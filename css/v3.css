@@ -1,0 +1,229 @@
+/* =========================================================
+   ecolease site v3 — motion layer
+   style.css の上に重ねる追加レイヤー。既存の配色・書体はそのまま、
+   「動き」と「見せ場」だけを足しています。
+   読み込み順： style.css → v3.css
+   ========================================================= */
+
+:root{
+  --v3-ink:#141a12;
+  --v3-ink-2:#1d2619;
+  --v3-ease:cubic-bezier(.22,.61,.36,1);
+  --v3-ease-io:cubic-bezier(.65,0,.35,1);
+}
+
+/* =========================================================
+   1. オープニング演出（ロゴのみ出現 → 幕が上がる）
+   JSが動く環境でのみ挿入されるため、JS無効でも内容は読めます
+   ========================================================= */
+.v3-loader{
+  position:fixed;inset:0;z-index:999;
+  background:
+    radial-gradient(120% 90% at 18% 85%, rgba(140,198,63,.10) 0%, rgba(20,26,18,0) 55%),
+    radial-gradient(90% 70% at 85% 10%, rgba(140,198,63,.06) 0%, rgba(20,26,18,0) 60%),
+    var(--v3-ink);
+  display:grid;place-items:center;
+  will-change:transform,opacity;
+}
+.v3-loader-inner{display:flex;flex-direction:column;align-items:center;gap:clamp(34px,6vh,62px)}
+.v3-logo{
+  width:clamp(132px,16vw,210px);height:auto;
+  opacity:0;filter:drop-shadow(0 10px 34px rgba(0,0,0,.45));
+}
+.v3-bar{
+  width:clamp(86px,9vw,116px);height:7px;border-radius:999px;
+  background:rgba(255,255,255,.14);overflow:hidden;position:relative;
+}
+.v3-bar span{
+  position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,#fff 0%,var(--green) 100%);border-radius:999px;
+}
+html.v3-loading,html.v3-loading body{overflow:hidden}
+
+/* 幕が上がるまでヒーローのコピーは伏せておく */
+html.v3-loading .hero .hero-copy > *{opacity:0}
+
+/* =========================================================
+   2. スクロール進捗バー
+   ========================================================= */
+.v3-progress{
+  position:fixed;left:0;top:0;height:2px;width:100%;z-index:95;
+  transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--green-deep),var(--green));
+  pointer-events:none;
+}
+
+/* =========================================================
+   3. ページ遷移の幕
+   ========================================================= */
+.v3-veil{
+  position:fixed;inset:0;z-index:200;background:var(--v3-ink);
+  opacity:0;pointer-events:none;
+}
+.v3-veil.on{pointer-events:auto}
+
+/* =========================================================
+   4. 見出しのマスクアップ（セクション共通）
+   ========================================================= */
+.v3-mask{display:block;overflow:hidden}
+.v3-mask > span{display:block;will-change:transform}
+
+/* ヒーローのスクロールサイン */
+.v3-scrollcue{
+  position:absolute;left:50%;bottom:86px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+  font-family:var(--latin);font-size:11px;letter-spacing:.3em;color:var(--ink-soft);
+  text-transform:uppercase;pointer-events:none;
+}
+.v3-scrollcue i{display:block;width:1px;height:54px;background:linear-gradient(180deg,var(--green),rgba(140,198,63,0));overflow:hidden;position:relative}
+.v3-scrollcue i::after{
+  content:"";position:absolute;left:0;top:-54px;width:1px;height:54px;background:var(--green-deep);
+  animation:v3cue 2.4s var(--v3-ease) infinite;
+}
+@keyframes v3cue{0%{top:-54px}60%,100%{top:54px}}
+@media (max-width:860px){.v3-scrollcue{display:none}}
+
+/* =========================================================
+   5. 3つの事業 — スクロール連動ステージ（本ページの見せ場）
+   JSが .stage-on を付けたときだけピン留め表示に切り替わります。
+   付かない場合（JS無効・モバイル）は通常の縦積みカードとして読めます。
+   ========================================================= */
+.bizstage{position:relative;background:var(--v3-ink);color:#fff;overflow:clip}
+.bizstage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 60% at 80% 0%,rgba(140,198,63,.10),rgba(20,26,18,0) 60%);
+}
+.bizstage-head{position:relative;z-index:2;padding:clamp(64px,9vw,120px) 0 clamp(28px,4vw,46px);text-align:center}
+.bizstage-head .eyebrow{color:var(--green);justify-content:center}
+.bizstage-head .eyebrow::before{background:var(--green)}
+.bizstage-head h2{
+  font-family:var(--serif);font-weight:700;color:#fff;letter-spacing:.06em;
+  font-size:clamp(26px,4.2vw,46px);line-height:1.5;margin-top:14px;
+}
+.bizstage-head p{color:#aab5a0;font-size:15.5px;line-height:2.05;max-width:60ch;margin:18px auto 0}
+
+/* --- 既定（JS無効・モバイル）：縦積みカード --- */
+.bizstage-track{position:relative}
+.bizstage-sticky{position:relative}
+.bizpanel{
+  position:relative;border-top:1px solid rgba(255,255,255,.12);
+  padding:clamp(40px,6vw,64px) 0;overflow:hidden;
+}
+.bizpanel-bg{position:absolute;inset:0;z-index:0}
+.bizpanel-bg img{width:100%;height:100%;object-fit:cover;opacity:.38;filter:grayscale(.3) saturate(.9) brightness(1.05)}
+.bizpanel-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(20,26,18,.93) 0%,rgba(20,26,18,.72) 44%,rgba(20,26,18,.3) 100%);
+}
+.bizpanel-inner{position:relative;z-index:2;padding-inline:var(--gutter);max-width:1240px;margin-inline:auto;width:100%}
+.bizpanel .num{
+  font-family:var(--latin);font-size:clamp(40px,6vw,74px);line-height:1;color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.5);letter-spacing:.04em;display:block;
+}
+.bizpanel .en{
+  display:block;font-family:var(--latin);font-weight:600;
+  font-size:clamp(40px,8.4vw,104px);line-height:1.04;letter-spacing:.02em;color:#fff;
+  margin:10px 0 6px;
+}
+.bizpanel h3{
+  font-family:var(--serif);font-weight:700;color:#fff;letter-spacing:.08em;
+  font-size:clamp(20px,2.6vw,30px);
+}
+.bizpanel p{color:#b9c3af;font-size:15.5px;line-height:2.1;max-width:46ch;margin-top:16px}
+.bizpanel .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.bizpanel .tags span{
+  font-size:12.5px;color:#dbe6cd;background:rgba(140,198,63,.16);
+  border:1px solid rgba(140,198,63,.4);padding:5px 13px;border-radius:999px;
+}
+.bizpanel .biz-cta{
+  display:inline-flex;align-items:center;gap:12px;margin-top:26px;
+  font-family:var(--serif);font-weight:600;font-size:15px;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:7px;transition:.35s var(--v3-ease);
+}
+.bizpanel .biz-cta .arr{transition:transform .4s var(--v3-ease)}
+.bizpanel .biz-cta:hover{color:var(--green);border-color:var(--green)}
+.bizpanel .biz-cta:hover .arr{transform:translateX(6px)}
+
+/* 背後を流れる巨大文字 */
+.bizpanel-ghost{
+  position:absolute;left:0;top:50%;z-index:1;white-space:nowrap;pointer-events:none;
+  font-family:var(--latin);font-weight:600;font-size:clamp(120px,26vw,330px);line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);
+  transform:translateY(-50%);
+}
+.bizstage-rail{display:none}
+
+/* --- JSが有効なデスクトップ：ピン留めステージ --- */
+.bizstage.stage-on .bizstage-track{height:340vh}
+.bizstage.stage-on .bizstage-sticky{
+  position:sticky;top:0;height:100vh;overflow:hidden;
+}
+.bizstage.stage-on .bizpanel{
+  position:absolute;inset:0;display:grid;align-items:center;
+  border-top:0;padding:0;opacity:0;visibility:hidden;
+}
+.bizstage.stage-on .bizpanel.is-on{opacity:1;visibility:visible}
+
+.bizstage.stage-on .bizpanel-bg img{opacity:.55}
+
+/* 進捗レール */
+.bizstage.stage-on .bizstage-rail{
+  display:flex;flex-direction:column;gap:16px;align-items:flex-end;
+  position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);z-index:5;
+}
+.bizstage-rail .r{
+  display:flex;align-items:center;gap:12px;font-family:var(--latin);font-size:13px;
+  letter-spacing:.14em;color:rgba(255,255,255,.4);transition:.4s var(--v3-ease);
+}
+.bizstage-rail .r i{display:block;width:34px;height:1px;background:rgba(255,255,255,.3);transition:.4s var(--v3-ease)}
+.bizstage-rail .r.on{color:#fff}
+.bizstage-rail .r.on i{width:60px;background:var(--green)}
+
+@media (max-width:860px){
+  .bizpanel .en{font-size:clamp(34px,11vw,56px)}
+  .bizpanel-ghost{display:none}
+}
+
+/* =========================================================
+   6. 共通の動きの底上げ
+   ========================================================= */
+/* カードのホバーを少しだけ立体に（transformのみ・レイアウトは動かさない） */
+.rel-card,.news-link,.side-block{will-change:transform}
+.biz-row,.rel-card{transition:transform .5s var(--v3-ease),box-shadow .5s var(--v3-ease)}
+
+/* 画像のズームイン（Motionが拾う） */
+.v3-zoom{overflow:hidden}
+.v3-zoom img{transition:transform 1.2s var(--v3-ease)}
+.v3-zoom:hover img{transform:scale(1.04)}
+
+/* =========================================================
+   7. 動きを減らす設定の尊重
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  .v3-scrollcue i::after{animation:none}
+  .v3-loader{display:none}
+  html.v3-loading .hero .hero-copy > *{opacity:1}
+  .bizstage.stage-on .bizstage-track{height:auto}
+  .bizstage.stage-on .bizstage-sticky{position:relative;height:auto}
+  .bizstage.stage-on .bizpanel{position:relative;opacity:1;visibility:visible;padding:48px 0;border-top:1px solid rgba(255,255,255,.12)}
+  .bizstage.stage-on .bizstage-rail{display:none}
+}
+
+
+/* 幕が上がった後はヒーローの立ち上がりを少し速く（待たせない） */
+html.anim .hero .hero-copy.in > *{
+  transition-duration:.9s;
+}
+html.anim .hero .hero-copy.in > .hero-eyebrow{transition-delay:.06s}
+html.anim .hero .hero-copy.in > h1{transition-delay:.18s}
+html.anim .hero .hero-copy.in > .sub{transition-delay:.36s}
+html.anim .hero .hero-copy.in > .hero-cta{transition-delay:.50s}
+
+
+/* --- オープニングをHTMLに直書きした場合（最初の描画からロゴが出る） --- */
+.v3-loader[data-static]{animation:v3LoaderFallback .6s linear 3.2s forwards}
+.v3-loader[data-static].js-took-over{animation:none}
+@keyframes v3LoaderFallback{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media (prefers-reduced-motion:reduce){
+  .v3-loader[data-static]{animation:v3LoaderFallback .3s linear .2s forwards}
+}

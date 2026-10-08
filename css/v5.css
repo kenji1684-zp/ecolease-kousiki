@@ -1,0 +1,330 @@
+/* =========================================================
+   ecolease site v5 — スクロールの質感を bettei.co.jp に寄せるレイヤー
+   読み込み順： style.css → v3.css → v4.css → v5.css
+     1. 慣性スクロール（Lenis）
+     2. 画像のスクラブ・パララックス（白いもやから立ち上がる）
+     3. 巨大な横流れテキスト（スクロール速度連動）
+     4. 背景固定のパララックス帯
+     5. セクション見出しを英字主役の組みに
+     6. 取扱設備を横スクロールのカードレールに
+   ========================================================= */
+
+/* 初期値は 1（＝変形なし・ベールなし）。JSが実値を入れるまで素の見た目にして、
+   読み込み直後の“チカッ”を防ぐ。 */
+@property --p{syntax:'<number>';inherits:true;initial-value:1}
+
+:root{
+  --v5-ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+
+/* =========================================================
+   1. 画像のスクラブ・パララックス
+      --p : 0（画面下から入る）→ 1（画面上へ抜ける）
+   ========================================================= */
+.v5-media{position:relative;overflow:hidden}
+.v5-media > img,.v5-media > .v5-img{
+  transform:scale(calc(1.18 - .18 * var(--p))) translate3d(0,calc((var(--p) - .5) * -3.5%),0);
+  will-change:transform;
+}
+.v5-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.72) 42%,rgba(255,255,255,0) 100%);
+  opacity:clamp(0,calc(1.15 - var(--p) * 3.1),1);
+  transition:opacity .1s linear;
+}
+.v5-media.is-dark::after{
+  background:linear-gradient(180deg,var(--v3-ink) 0%,rgba(20,26,18,.6) 45%,rgba(20,26,18,0) 100%);
+}
+
+/* 縦方向にゆっくり流れる要素（テキストブロックなど） */
+.v5-rise{transform:translate3d(0,calc((var(--p) - .5) * -36px),0)}
+
+/* =========================================================
+   2. 巨大な横流れテキスト
+   ========================================================= */
+.v5-marquee{
+  position:relative;overflow:hidden;padding:clamp(54px,8vw,110px) 0;
+  background:var(--white);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+}
+.v5-marquee .mq-track{display:flex;width:max-content;will-change:transform}
+.v5-marquee .mq-item{
+  display:flex;align-items:center;gap:clamp(28px,4vw,64px);padding-right:clamp(28px,4vw,64px);
+  font-family:var(--latin);font-weight:500;
+  font-size:clamp(42px,7.6vw,104px);line-height:1;letter-spacing:.01em;color:var(--ink);
+  white-space:nowrap;
+}
+.v5-marquee .mq-item i{
+  width:clamp(8px,1vw,13px);height:clamp(8px,1vw,13px);border-radius:50%;
+  background:var(--green);display:block;flex-shrink:0;
+}
+.v5-marquee .mq-sub{
+  position:relative;z-index:2;text-align:center;margin-top:clamp(18px,2.4vw,34px);
+  font-family:var(--serif);font-size:clamp(13px,1.3vw,16px);letter-spacing:.2em;color:var(--ink-faint);
+}
+html[data-theme="b"] .v5-marquee{background:var(--green-mist)}
+
+/* =========================================================
+   3. 背景固定のパララックス帯
+   ========================================================= */
+.v5-band{position:relative;background:var(--v3-ink);color:#fff;overflow:clip}
+.v5-band-bg{position:sticky;top:0;height:100vh;overflow:hidden}
+.v5-band-bg img{width:100%;height:100%;object-fit:cover;opacity:.52;transform:scale(1.06)}
+.v5-band-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,26,18,.72) 0%,rgba(20,26,18,.42) 40%,rgba(20,26,18,.88) 100%);
+}
+.v5-band-copy{
+  position:relative;z-index:2;margin-top:-100vh;min-height:100vh;
+  display:grid;align-items:center;padding-block:clamp(90px,14vh,170px);
+}
+.v5-band-copy .inner{max-width:720px;margin-inline:auto;text-align:center;padding-inline:var(--gutter)}
+.v5-band-copy .en{
+  font-family:var(--latin);font-size:13px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--green);display:block;margin-bottom:22px;
+}
+.v5-band-copy h2{
+  font-family:var(--serif);font-weight:700;color:#fff;letter-spacing:.09em;
+  font-size:clamp(23px,3.6vw,42px);line-height:1.8;
+}
+.v5-band-copy p{color:#c2cdb6;font-size:15.5px;line-height:2.15;margin-top:26px}
+.v5-band-copy .btn{margin-top:36px}
+
+@media (max-width:860px){
+  .v5-band-bg{height:70vh}
+  .v5-band-copy{margin-top:-70vh;min-height:70vh}
+  .v5-band-copy h2{line-height:1.9}
+}
+
+/* =========================================================
+   4. セクション見出し（英字主役・bettei の組み）
+   ========================================================= */
+.sec-head:not(.center){
+  display:grid;grid-template-columns:auto 1fr;align-items:end;gap:0 clamp(14px,2vw,26px);
+  border-bottom:1px solid var(--line);padding-bottom:clamp(16px,2vw,24px);
+}
+.sec-head:not(.center) .eyebrow{
+  grid-column:1;grid-row:1;
+  font-family:var(--latin);font-weight:500;text-transform:none;
+  font-size:clamp(30px,4.4vw,58px);line-height:1;letter-spacing:.01em;
+  color:var(--ink);margin:0;
+}
+.sec-head:not(.center) .eyebrow::before{display:none}
+.sec-head:not(.center) .jp{
+  grid-column:2;grid-row:1;align-self:end;
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(12.5px,1.2vw,15px);letter-spacing:.16em;line-height:1.8;
+  color:var(--ink-soft);padding-bottom:clamp(4px,.6vw,8px);
+}
+.sec-head:not(.center) .lead{grid-column:1/-1;grid-row:2;margin-top:clamp(18px,2.4vw,30px);max-width:64ch}
+
+/* 中央寄せの見出しは英字を上に大きく */
+.sec-head.center .eyebrow{
+  font-family:var(--latin);font-size:clamp(28px,4vw,54px);line-height:1.05;
+  text-transform:none;letter-spacing:.01em;color:var(--ink);justify-content:center;margin-bottom:10px;
+}
+.sec-head.center .eyebrow::before,.sec-head.center .eyebrow::after{display:none}
+.sec-head.center .jp{font-size:clamp(15px,1.7vw,20px);letter-spacing:.12em;color:var(--ink-soft)}
+
+/* 事業ステージの見出しも同じ組みに */
+.bizstage-head .eyebrow{
+  font-family:var(--latin);font-size:clamp(30px,4.4vw,56px);line-height:1.05;
+  text-transform:none;letter-spacing:.01em;color:#fff;margin-bottom:12px;
+}
+.bizstage-head .eyebrow::before,.bizstage-head .eyebrow::after{display:none}
+.bizstage-head h2{font-size:clamp(17px,2vw,24px);letter-spacing:.14em;color:#dfe7d6}
+
+@media (max-width:760px){
+  .sec-head:not(.center){grid-template-columns:1fr}
+  .sec-head:not(.center) .jp{grid-column:1;grid-row:2;padding-bottom:0;margin-top:8px}
+  .sec-head:not(.center) .lead{grid-row:3}
+}
+
+/* =========================================================
+   5. 取扱設備：横スクロールのカードレール
+   ========================================================= */
+.v5-railwrap{position:relative;margin-top:clamp(28px,4vw,46px)}
+.v5-rail{
+  display:flex;gap:clamp(14px,1.8vw,26px);overflow-x:auto;scroll-snap-type:x proximity;
+  padding-bottom:14px;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;
+}
+.v5-rail::-webkit-scrollbar{display:none}
+.v5-rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.v5-rail.dragging *{pointer-events:none}
+.v5-rail > *{flex:0 0 clamp(248px,27vw,350px);scroll-snap-align:start}
+.v5-railnav{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.v5-railnav button{
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  display:grid;place-items:center;transition:.35s var(--v5-ease);color:var(--ink);
+}
+.v5-railnav button:hover{background:var(--green);border-color:var(--green);color:#fff}
+.v5-railnav button:disabled{opacity:.35;cursor:default}
+.v5-railnav svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6}
+.v5-railbar{height:2px;background:var(--line);position:relative;margin-top:18px;border-radius:2px}
+.v5-railbar span{position:absolute;left:0;top:0;height:100%;background:var(--green);border-radius:2px;transition:width .2s linear}
+
+/* =========================================================
+   6. 動きを減らす設定
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  .v5-media > img,.v5-media > .v5-img{transform:none}
+  .v5-media::after{opacity:0}
+  .v5-rise{transform:none}
+  .v5-marquee .mq-track{transform:none !important}
+  .v5-band-bg{position:relative;height:auto}
+  .v5-band-copy{margin-top:0;min-height:0}
+}
+
+
+/* =========================================================
+   7. ピン留めステートメント（bettei.co.jp のスクロール演出）
+      背景写真はその場に留まり、文字だけが浮かび上がって消える。
+      --p 全体進行 / --t 文字の濃度 / --v 暗幕の濃度（すべてJSが書き込む）
+   ========================================================= */
+@property --t{syntax:'<number>';inherits:true;initial-value:0}
+@property --v{syntax:'<number>';inherits:true;initial-value:0}
+
+.jg-pin{position:relative;height:300vh;background:var(--v3-ink)}
+.jg-pin-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.jg-pin-bg{position:absolute;inset:0}
+.jg-pin-bg img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(calc(1.14 - .14 * var(--p)));
+  will-change:transform;
+}
+.jg-pin-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(100deg,rgba(18,24,16,.92) 0%,rgba(18,24,16,.84) 46%,rgba(18,24,16,.8) 100%),
+    radial-gradient(120% 80% at 50% 50%,rgba(18,24,16,0) 0%,rgba(18,24,16,.45) 100%);
+  opacity:var(--v);
+}
+.jg-pin-copy{
+  position:absolute;inset:0;z-index:2;display:grid;align-items:center;
+  opacity:var(--t);
+  transform:translate3d(0,calc((1 - var(--t)) * 26px),0);
+  will-change:opacity,transform;
+}
+.jg-grid{
+  display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(36px,6vw,96px);align-items:start;
+  color:#fff;
+}
+.jg-left .ln{
+  display:block;font-family:var(--serif);font-weight:600;
+  font-size:clamp(20px,2.5vw,32px);line-height:2.1;letter-spacing:.09em;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.jg-left .ln:nth-child(1){opacity:clamp(0,calc((var(--t) - .00) * 2.4),1)}
+.jg-left .ln:nth-child(2){opacity:clamp(0,calc((var(--t) - .10) * 2.4),1)}
+.jg-left .ln:nth-child(3){opacity:clamp(0,calc((var(--t) - .20) * 2.4),1)}
+.jg-left .ln em{font-style:normal;color:var(--green)}
+.jg-right p{
+  font-size:15px;line-height:2.5;color:rgba(255,255,255,.92);
+  margin-bottom:28px;text-shadow:0 2px 14px rgba(0,0,0,.5);
+}
+.jg-right p:last-of-type{margin-bottom:0}
+.jg-right .btn{margin-top:36px}
+.jg-pin .v3-scrollcue,.jg-pin .jg-cue{
+  position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+  font-family:var(--latin);font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.75);
+  text-transform:uppercase;z-index:3;opacity:clamp(0,calc(1 - var(--p) * 4),1);
+}
+
+@media (max-width:900px){
+  .jg-pin{height:260vh}
+  .jg-grid{grid-template-columns:1fr;gap:26px}
+  .jg-left .ln{font-size:clamp(18px,5vw,24px);line-height:1.95}
+  .jg-right p{font-size:14px;line-height:2.2;margin-bottom:18px}
+  .jg-right .btn{margin-top:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .jg-pin{height:auto}
+  .jg-pin-sticky{position:relative;height:auto;min-height:70vh}
+  .jg-pin-copy{position:relative;opacity:1;transform:none;padding-block:clamp(60px,10vh,110px)}
+  .jg-pin-bg::after{opacity:.72}
+  .jg-left .ln{opacity:1 !important}
+}
+
+/* =========================================================
+   8. The Cycle — カードが下から上へ積み上がる（ceep.co.jp/service 参照）
+      JSが .stack-on を付けたときだけ重ね積みに切り替わります。
+      付かない場合（JS無効・スマホ）は縦並びのカードとして読めます。
+   ========================================================= */
+.cyc-stack{position:relative;margin-top:clamp(26px,4vw,48px)}
+.cyc-sticky{position:relative}
+
+.cyc-panel{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;display:grid;grid-template-columns:1.04fr .96fr;margin-bottom:16px;
+}
+html[data-theme="b"] .cyc-panel{border-radius:24px}
+.cyc-panel .body{position:relative;z-index:2;padding:clamp(26px,3.2vw,48px);display:flex;flex-direction:column;justify-content:center}
+.cyc-panel .n{font-family:var(--latin);font-size:12.5px;letter-spacing:.3em;color:var(--accent-deep)}
+.cyc-panel .ic{width:clamp(38px,3.4vw,52px);height:clamp(38px,3.4vw,52px);margin:18px 0 16px;color:var(--green-deep)}
+.cyc-panel .ic svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.3;fill:none}
+.cyc-panel h4{font-family:var(--serif);font-weight:700;letter-spacing:.07em;line-height:1.5;
+  font-size:clamp(21px,2.6vw,32px);color:var(--ink)}
+.cyc-panel .lead{font-size:15px;line-height:2.1;color:var(--ink-soft);margin-top:14px;max-width:34ch}
+.cyc-panel .big{
+  position:absolute;right:clamp(14px,2vw,30px);bottom:-.16em;z-index:0;pointer-events:none;
+  font-family:var(--latin);font-weight:500;line-height:1;color:var(--green-mist);
+  font-size:clamp(88px,11vw,168px);
+}
+.cyc-panel .media{position:relative;min-height:220px;overflow:hidden}
+.cyc-panel .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cyc-panel .media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 32%);
+}
+
+/* --- JSが有効なデスクトップ：重ねて積む --- */
+.cyc-stack.stack-on{margin-inline:calc(50% - 50vw);width:100vw}
+.cyc-stack.stack-on .cyc-sticky{
+  position:sticky;top:0;height:100vh;overflow:hidden;
+}
+.cyc-stack.stack-on .cyc-panel{
+  position:absolute;left:50%;top:50%;margin:0;
+  width:min(1040px,90%);height:min(58vh,480px);
+  transform:translate(-50%,50%);
+  box-shadow:0 36px 80px -44px rgba(34,42,32,.65);
+  will-change:transform,opacity;
+}
+.cyc-stack.stack-on .cyc-panel .media{min-height:0}
+
+/* 左側の進行インデックス */
+.cyc-rail{display:none}
+.cyc-stack.stack-on .cyc-rail{
+  display:flex;flex-direction:column;gap:13px;
+  position:absolute;left:clamp(16px,3.4vw,52px);top:50%;transform:translateY(-50%);z-index:20;
+}
+.cyc-rail .r{
+  display:flex;align-items:center;gap:11px;font-family:var(--latin);font-size:12px;
+  letter-spacing:.16em;color:var(--ink-faint);transition:.4s var(--v5-ease);white-space:nowrap;
+}
+.cyc-rail .r i{display:block;width:22px;height:1px;background:var(--line);transition:.4s var(--v5-ease)}
+.cyc-rail .r .jp{font-family:var(--serif);font-size:12.5px;letter-spacing:.08em;opacity:0;transition:.4s var(--v5-ease)}
+.cyc-rail .r.on{color:var(--ink)}
+.cyc-rail .r.on i{width:42px;background:var(--green)}
+.cyc-rail .r.on .jp{opacity:1}
+
+@media (max-width:1100px){
+  .cyc-stack.stack-on .cyc-panel{width:min(880px,88%)}
+  .cyc-stack.stack-on .cyc-rail{left:12px}
+  .cyc-rail .r .jp{display:none}
+}
+@media (max-width:900px){
+  .cyc-panel{grid-template-columns:1fr}
+  .cyc-panel .media{min-height:180px;order:-1}
+  .cyc-panel .media::after{background:linear-gradient(180deg,rgba(255,255,255,0) 60%,rgba(255,255,255,.92) 100%)}
+  .cyc-panel .lead{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .cyc-stack.stack-on .cyc-sticky{position:relative;height:auto;overflow:visible}
+  .cyc-stack.stack-on .cyc-panel{position:relative;left:auto;top:auto;width:auto;height:auto;
+    transform:none !important;opacity:1 !important;margin-bottom:16px;box-shadow:none}
+  .cyc-stack.stack-on .cyc-rail{display:none}
+}

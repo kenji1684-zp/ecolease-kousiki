@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社エコリース｜捨てないというビジネスモデル</title>
+<meta name="description" content="株式会社エコリースは、設備リース・設備レンタル・ビルメンテナンスを通じて「捨てない」を実践する徳島の会社です。浄化槽・受水槽・キュービクル等の大型設備に対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/v3.css">
+<link rel="stylesheet" href="css/v4.css">
+<link rel="stylesheet" href="css/v5.css">
+</head>
+<body data-screen-label="トップページ">
+
+<!-- ============================================================
+     オープニング（最初の描画からロゴが見えるようHTMLに直書き）
+     ・2回目以降のアクセスでは直後のスクリプトが即座に取り除きます
+     ・JSが動かない環境でも約3.2秒で自動的に消えます（css/v3.css）
+     ============================================================ -->
+<div class="v3-loader" id="v3Loader" data-static aria-hidden="true">
+  <div class="v3-loader-inner">
+    <img class="v3-logo" src="img/logo-mark.png" alt="" fetchpriority="high" decoding="sync">
+    <div class="v3-bar"><span></span></div>
+  </div>
+</div>
+<script>
+(function(){try{
+  if(sessionStorage.getItem('ecolease_v3_intro')){
+    var e=document.getElementById('v3Loader'); if(e&&e.parentNode) e.parentNode.removeChild(e);
+  }else{
+    document.documentElement.classList.add('v3-loading');
+  }
+}catch(err){}})();
+</script>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap-wide header-inner">
+    <a href="index.html" class="brand">
+      <img src="img/logo.png" alt="エコリース">
+      <span class="brand-txt"><b>株式会社エコリース</b><span>ECO LEASE CO.,LTD.</span></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">TOP</a>
+      <a href="jigyo.html" class="nav-link">事業案内</a>
+      <a href="lease.html" class="nav-link">設備リース</a>
+      <a href="rental.html" class="nav-link">設備レンタル</a>
+      <a href="maintenance.html" class="nav-link">ビルメンテナンス</a>
+      <a href="estimate.html" class="nav-link">簡易見積り</a>
+      <a href="company.html" class="nav-link">会社概要</a>
+      <a href="contact.html" class="nav-cta">お問い合わせ</a>
+    </nav>
+    <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="drawer">
+  <a href="index.html" class="active">TOP<span class="en">Top</span></a>
+  <a href="jigyo.html">事業案内<span class="en">Business</span></a>
+  <a href="lease.html">設備リース<span class="en">Lease</span></a>
+  <a href="rental.html">設備レンタル<span class="en">Rental</span></a>
+  <a href="maintenance.html">ビルメンテナンス<span class="en">Maintenance</span></a>
+  <a href="estimate.html">簡易見積り<span class="en">Estimate</span></a>
+  <a href="company.html">会社概要<span class="en">Company</span></a>
+  <a href="contact.html">お問い合わせ<span class="en">Contact</span></a>
+</div>
+<!-- ============ HERO ============ -->
+<section class="hero" data-screen-label="ヒーロー">
+  <div class="wrap-wide hero-inner">
+    <div class="hero-copy reveal">
+      <span class="theme-only-b hero" style="display:none"></span>
+      <p class="hero-eyebrow">Business model not to throw away</p>
+      <h1>捨てない、<br>という<span class="dim">ビジネスモデル</span>。</h1>
+      <p class="sub">設備を「使い捨て」にしない。回収し、洗い、整え、また活かす。<br>まだ使える設備に、もう一度価値を。エコリースは、リース・レンタル・ビルメンテナンスで循環を担います。</p>
+      <div class="hero-cta">
+        <a href="#equip" class="btn btn-primary">取扱設備を見る <span class="arr">→</span></a>
+        <a href="contact.html" class="btn btn-ghost">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="track">
+      <span>電気設備<span></span></span><span>防災設備</span><span>給排水設備</span><span>空調設備</span><span>浄化槽</span><span>受水槽</span><span>キュービクル</span><span>変圧器</span>
+      <span>電気設備</span><span>防災設備</span><span>給排水設備</span><span>空調設備</span><span>浄化槽</span><span>受水槽</span><span>キュービクル</span><span>変圧器</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE（v5：スクロール速度で流れが変わる巨大テキスト） ============ -->
+<section class="v5-marquee" aria-hidden="true">
+  <div class="mq-track">
+    <div class="mq-item"><span>Beyond Waste</span><i></i><span>Beyond Reuse</span><i></i></div>
+  </div>
+  <p class="mq-sub">捨てない、という選択を、徳島から。</p>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="section news-sec" id="news" data-screen-label="お知らせ">
+  <div class="wrap">
+    <div class="news-head reveal">
+      <div class="news-head-txt">
+        <span class="eyebrow">News</span>
+        <h2 class="jp">お知らせ</h2>
+      </div>
+      <button type="button" class="news-filter-btn" id="newsFilterBtn" aria-expanded="false" aria-controls="newsCats">
+        <span class="ttl">カテゴリで絞り込む</span>
+        <span class="cur" id="newsCurCat">すべて</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- ジャバラ（アコーディオン）で普段は隠すカテゴリ -->
+    <div class="news-cats" id="newsCats">
+      <div class="news-cats-inner">
+        <button type="button" class="news-cat is-on" data-cat="all">すべて</button>
+        <button type="button" class="news-cat c-topics" data-cat="topics">トピックス</button>
+        <button type="button" class="news-cat c-kaizen" data-cat="kaizen">取り組み・改善</button>
+        <button type="button" class="news-cat c-jigyo" data-cat="jigyo">事業紹介</button>
+        <button type="button" class="news-cat c-item" data-cat="item">商品紹介</button>
+        <button type="button" class="news-cat c-gyomu" data-cat="gyomu">業務内容</button>
+        <button type="button" class="news-cat c-interview" data-cat="interview">インタビュー</button>
+        <button type="button" class="news-cat c-recruit" data-cat="recruit">求人</button>
+        <button type="button" class="news-cat c-sdgs" data-cat="sdgs">SDGs</button>
+      </div>
+    </div>
+
+    <ul class="news-list reveal d1" id="newsList">
+      <li class="news-item" data-cat="gyomu">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.08.09</time>
+          <span class="news-tag c-gyomu">業務内容</span>
+          <span class="news-title">夏季休暇（お盆休み）のお知らせ</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="interview">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.08.09</time>
+          <span class="news-tag c-interview">インタビュー</span>
+          <span class="news-title">熊本震災のお見舞い</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.06.16</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">初夏の海へ！社員レクリエーション釣り会を開催</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.05.29</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">川嶋設備・川嶋健史様、朝日機材大阪支店安全衛生協力会より個人賞を受賞</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.05.14</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">【釣果報告】5月6日 伊島沖で久々の大漁！</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.05.08</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">エコリースソング作ってみた</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.03.16</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">創立40周年 皆さまの温かな祝福に感謝</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2026.01.08</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">道の駅いたのフェスティバル：11/30(日) へ出展</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="kaizen" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2025.10.01</time>
+          <span class="news-tag c-kaizen">取り組み・改善</span>
+          <span class="news-title">未来を育む就労環境へ：育休促進行動計画</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2025.09.18</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">第1回 ビルメンテナンスEXPO 大阪展 エコリース出展いたしました！</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="sdgs" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2025.08.26</time>
+          <span class="news-tag c-sdgs">SDGs</span>
+          <span class="news-title">エコキャップ回収活動報告</span>
+        </a>
+      </li>
+      <li class="news-item" data-cat="topics" data-extra="1">
+        <a href="news-detail.html" class="news-link">
+          <time class="news-date">2025.07.09</time>
+          <span class="news-tag c-topics">トピックス</span>
+          <span class="news-title">特定技能2号評価試験：合格しました。</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="news-foot">
+      <button type="button" class="news-more" id="newsMore" aria-expanded="false">もっと見る <span class="chev" aria-hidden="true"></span></button>
+      <a href="news.html" class="txtlink">お知らせ一覧 <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MESSAGE ============ -->
+<section class="section">
+  <div class="wrap message">
+    <div class="vtxt vtxt-stack reveal" aria-label="設備を、捨てない。"><span>設</span><span>備</span><span>を</span><span class="pt">、</span><em>捨</em><em>て</em><em>な</em><em>い</em><span class="pt pt-end">。</span></div>
+    <div class="m-body reveal d1">
+      <p>地球温暖化の大きな原因といわれる二酸化炭素。その発生源のひとつが、ものを「燃やす」ことです。<strong>だからエコリースは、捨てません。</strong></p>
+      <p>役目を終えた設備を回収し、手間をかけて洗い、不具合があれば修理する。きれいに整えて、もう一度リース・レンタルへ。<strong>企業活動が、そのまま環境活動になる。</strong>それが私たちのビジネスモデルです。</p>
+      <a href="company.html" class="txtlink">エコリースの考え方 <span class="arr">→</span></a>
+    </div>
+      <div class="hero-figs msg-figs reveal d2">
+        <div class="blob theme-only-b"></div>
+        <div class="blob blob-2 theme-only-b"></div>
+        <div class="f f1"><img src="img/cubicle.jpg" alt="受変電設備（キュービクル）"></div>
+        <div class="f f2"><img src="img/tank.jpg" alt="受水槽"></div>
+        <div class="f f3 theme-only-a"><img src="img/aircon.jpg" alt="空調設備"></div>
+      </div>
+  </div>
+</section>
+
+<!-- ============ PARALLAX BAND（v5：背景が止まり、文字だけが流れる） ============ -->
+<section class="v5-band">
+  <div class="v5-band-bg"><img src="img/johkasou.jpg" alt=""></div>
+  <div class="v5-band-copy">
+    <div class="inner v5-rise">
+      <span class="en">Beyond Waste</span>
+      <h2>まだ使える設備を、<br>次の現場へ。</h2>
+      <p>回収し、洗い、整えて、もう一度おくり出す。<br>その一周ごとに、燃やされるはずだったものが減っていきます。<br>私たちの仕事は、そのまま環境への仕事です。</p>
+      <a href="jigyo.html" class="btn btn-primary">事業案内を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 BUSINESSES（v3：スクロール連動ステージ） ============ -->
+<section class="bizstage" id="business" data-screen-label="事業内容">
+  <div class="bizstage-head">
+    <div class="wrap">
+      <span class="eyebrow center">Our Business</span>
+      <h2>3つの事業で、循環をつくる。</h2>
+      <p>回収から再活用まで。エコリースは「設備リース」「設備レンタル」「ビルメンテナンス」を一貫して担い、設備の一生に寄り添います。</p>
+    </div>
+  </div>
+
+  <div class="bizstage-track">
+    <div class="bizstage-sticky">
+
+      <article class="bizpanel" data-i="0">
+        <div class="bizpanel-bg"><img src="img/cubicle.jpg" alt="設備リース"></div>
+        <span class="bizpanel-ghost" aria-hidden="true">LEASE</span>
+        <div class="bizpanel-inner">
+          <span class="num">01</span>
+          <span class="en">LEASE</span>
+          <h3>設備リース</h3>
+          <p>仮設（プレハブ）施設をはじめ、長期でご利用いただく設備を計画的にご提供。浄化槽・受水槽・キュービクル等の大型設備にも対応します。</p>
+          <div class="tags"><span>電気設備</span><span>給排水設備</span><span>大型設備</span></div>
+          <a href="lease.html" class="biz-cta">詳しく見る <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="bizpanel" data-i="1">
+        <div class="bizpanel-bg"><img src="img/aircon.jpg" alt="設備レンタル"></div>
+        <span class="bizpanel-ghost" aria-hidden="true">RENTAL</span>
+        <div class="bizpanel-inner">
+          <span class="num">02</span>
+          <span class="en">RENTAL</span>
+          <h3>設備レンタル</h3>
+          <p>イベント・短期工事・繁忙期など、必要な期間だけ。空調・防災・電気設備をスピーディーにお届けし、使い終えたら回収・再整備します。</p>
+          <div class="tags"><span>空調設備</span><span>防災設備</span><span>短期利用</span></div>
+          <a href="rental.html" class="biz-cta">詳しく見る <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="bizpanel" data-i="2">
+        <div class="bizpanel-bg"><img src="img/pump.jpg" alt="ビルメンテナンス"></div>
+        <span class="bizpanel-ghost" aria-hidden="true">MAINTENANCE</span>
+        <div class="bizpanel-inner">
+          <span class="num">03</span>
+          <span class="en">MAINTENANCE</span>
+          <h3>ビルメンテナンス</h3>
+          <p>建物の設備を、長く・安全に使い続けるために。点検・清掃・保守から修繕まで、施設の価値を保つメンテナンスをワンストップでお引き受けします。</p>
+          <div class="tags"><span>点検・保守</span><span>清掃</span><span>修繕</span></div>
+          <a href="maintenance.html" class="biz-cta">詳しく見る <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <div class="bizstage-rail" aria-hidden="true">
+        <span class="r on"><i></i>01</span>
+        <span class="r"><i></i>02</span>
+        <span class="r"><i></i>03</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CYCLE ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">The Cycle</span>
+      <h2 class="jp">「捨てない」をつくる、6つの工程。</h2>
+      <p class="lead">設備は使い終わりが終点ではありません。エコリースの手を通って、何度も現場へ還っていきます。</p>
+    </div>
+    <div class="cycle reveal d1">
+      <div class="step"><span class="n">STEP 01</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-2-2M20 17H7l2 2"/><circle cx="12" cy="12" r="9"/></svg></div><h4>回収</h4><p>役目を終えた設備を全国から回収</p></div>
+      <div class="step"><span class="n">STEP 02</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/><path d="M3 20h18"/></svg></div><h4>洗浄・点検</h4><p>丁寧に洗い、状態をチェック</p></div>
+      <div class="step"><span class="n">STEP 03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l4-1L20 7a2 2 0 0 0-3-3L4 17z"/></svg></div><h4>整備・修理</h4><p>不具合は直し、性能を回復</p></div>
+      <div class="step"><span class="n">STEP 04</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5v9l-9 5-9-5z"/><path d="M3 9l9 5 9-5"/></svg></div><h4>保管</h4><p>資材置き場で適切にストック</p></div>
+      <div class="step"><span class="n">STEP 05</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h18v11H3z"/><path d="M3 11h18M8 18v3M16 18v3"/></svg></div><h4>リース／レンタル</h4><p>次の現場へ再びお届け</p></div>
+      <div class="step"><span class="n">STEP 06</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6l4-2M12 21a9 9 0 1 0-9-9"/></svg></div><h4>再活用</h4><p>また誰かの現場で活躍</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT ============ -->
+<section class="section tint" id="equip" data-screen-label="取扱設備">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Equipment</span>
+      <h2 class="jp">取扱設備</h2>
+      <p class="lead">一般住宅設備から、浄化槽・受水槽・キュービクルなどの大型設備まで。幅広い機器を全国44都道府県の現場へお届けしています。</p>
+    </div>
+    <div class="v5-railwrap">
+      <div class="v5-rail">
+      <a class="equip-card reveal" href="lease.html"><img src="img/tank.jpg" alt="受水槽"><div class="cap"><span class="cat">Water Supply</span><h4>受水槽・パネルタンク</h4></div></a>
+      <a class="equip-card reveal d1" href="lease.html"><img src="img/cubicle.jpg" alt="受変電設備"><div class="cap"><span class="cat">Electric</span><h4>受変電設備・キュービクル</h4></div></a>
+      <a class="equip-card reveal d2" href="rental.html"><img src="img/aircon.jpg" alt="空調設備"><div class="cap"><span class="cat">Air Conditioning</span><h4>空調設備（パッケージエアコン）</h4></div></a>
+      <a class="equip-card reveal" href="lease.html"><img src="img/johkasou.jpg" alt="浄化槽"><div class="cap"><span class="cat">Drainage</span><h4>浄化槽</h4></div></a>
+      <a class="equip-card reveal d1" href="lease.html"><img src="img/transformer.jpg" alt="変圧器"><div class="cap"><span class="cat">Electric</span><h4>変圧器（トランス）</h4></div></a>
+      <a class="equip-card reveal d2" href="rental.html"><img src="img/pump.jpg" alt="消防設備"><div class="cap"><span class="cat">Disaster Prevention</span><h4>消防設備・動力消防ポンプ庫</h4></div></a>
+      </div>
+      <div class="v5-railbar"><span style="width:20%"></span></div>
+      <div class="v5-railnav">
+        <button type="button" class="rail-prev" aria-label="前へ"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="rail-next" aria-label="次へ"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRENGTHS + STATS ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Strengths</span>
+      <h2 class="jp">エコリースが選ばれる理由</h2>
+    </div>
+    <div class="strength-grid reveal d1">
+      <div class="cell"><span class="n">REASON 01</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-4-3-6-3-6M12 3c0 4 3 5 3 9a3 3 0 0 1-6 0c0-2 3-3 3-3"/></svg></div><h4>環境への貢献</h4><p>捨てずに再生する事業そのものが、CO₂削減と資源循環に直結します。</p></div>
+      <div class="cell"><span class="n">REASON 02</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>コストを抑える</h4><p>再生設備の活用で、必要な機能を適正な価格で。短期も長期も柔軟に。</p></div>
+      <div class="cell"><span class="n">REASON 03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>確かな品質</h4><p>回収・洗浄・点検・整備の各工程を自社基準で管理。安心してお使いいただけます。</p></div>
+      <div class="cell"><span class="n">REASON 04</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h12l-3-3M3 12l9 9M21 7l-4 4 4 4"/></svg></div><h4>全国対応・ワンストップ</h4><p>名古屋・大阪に拠点を構え、輸送から施工・保守までまとめてお任せいただけます。</p></div>
+    </div>
+    <div class="stats reveal d2" style="margin-top:64px">
+      <div class="stat"><div class="v">40<small>周年</small></div><div class="k">創立からの歩み</div></div>
+      <div class="stat"><div class="v">44<small>都道府県</small></div><div class="k">全国の施工実績</div></div>
+      <div class="stat"><div class="v">5<small>ヶ所</small></div><div class="k">資材置き場</div></div>
+      <div class="stat"><div class="v">3<small>事業</small></div><div class="k">リース・レンタル・保守</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <div class="deco">ECO LEASE</div>
+  <div class="wrap">
+    <h2 class="reveal">まずは、お気軽にご相談ください。</h2>
+    <p class="reveal d1">必要な設備・期間・地域をお聞かせください。最適なご提案をいたします。</p>
+    <div class="cta-row reveal d2">
+      <a href="contact.html" class="btn btn-primary">お問い合わせフォーム <span class="arr">→</span></a>
+      <a href="tel:0886720441" class="tel-big">☏ 088-672-0441</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="エコリース">
+        <p>〒779-0102<br>徳島県板野郡板野町川端字鶴ヶ須47-10<br>名古屋事務所／大阪事務所</p>
+        <div class="tel">088-672-0441</div>
+        <p>FAX 088-672-3623</p>
+      </div>
+      <div class="footer-col">
+        <h4>Business</h4>
+        <a href="jigyo.html">事業案内</a>
+        <a href="lease.html">設備リース</a>
+        <a href="rental.html">設備レンタル</a>
+        <a href="maintenance.html">ビルメンテナンス</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="news.html">お知らせ</a>
+        <a href="company.html">会社概要</a>
+        <a href="estimate.html">簡易見積り</a>
+        <a href="index.html#equip">取扱設備</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="index.html#business">「捨てない」の考え方</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="latin">© <span id="yr">2026</span> ECO LEASE CO., LTD.</span>
+      <span>株式会社エコリース｜捨てないというビジネスモデル</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/v3.js"></script>
+<script src="js/lenis.js"></script>
+<script src="js/v4.js"></script>
+<script src="js/v5.js"></script>
+</body>
+</html>
