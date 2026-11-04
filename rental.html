@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="a">
+<html lang="ja" data-theme="b">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/v3.css">
 <link rel="stylesheet" href="css/v4.css">
 <link rel="stylesheet" href="css/v5.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body data-screen-label="設備レンタル">
 
@@ -23,26 +24,50 @@
     </a>
     <nav class="nav">
       <a href="index.html" class="nav-link">TOP</a>
-      <a href="jigyo.html" class="nav-link">事業案内</a>
-      <a href="lease.html" class="nav-link">設備リース</a>
-      <a href="rental.html" class="nav-link active">設備レンタル</a>
-      <a href="maintenance.html" class="nav-link">ビルメンテナンス</a>
+      <div class="nav-dd">
+        <a href="jigyo.html" class="nav-link active" aria-haspopup="true">事業案内<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="jigyo.html" class="all"><b>事業案内トップ</b><span>Business</span></a>
+          <a href="lease.html"><b>設備リース</b><span>Lease</span></a>
+          <a href="rental.html" class="on"><b>設備レンタル</b><span>Rental</span></a>
+          <a href="maintenance.html"><b>ビルメンテナンス</b><span>Maintenance</span></a>
+        </div>
+      </div>
       <a href="estimate.html" class="nav-link">簡易見積り</a>
       <a href="company.html" class="nav-link">会社概要</a>
+      <div class="nav-dd">
+        <a href="recruit.html" class="nav-link" aria-haspopup="true">採用情報<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="recruit.html" class="all"><b>採用トップ</b><span>Recruit</span></a>
+          <a href="interview.html"><b>社員インタビュー</b><span>Interview</span></a>
+          <a href="data.html"><b>データで見るエコリース</b><span>Data</span></a>
+        </div>
+      </div>
       <a href="contact.html" class="nav-cta">お問い合わせ</a>
     </nav>
     <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
   </div>
 </header>
-<div class="drawer">
+<div class="drawer" data-lenis-prevent>
   <a href="index.html">TOP<span class="en">Top</span></a>
   <a href="jigyo.html">事業案内<span class="en">Business</span></a>
-  <a href="lease.html">設備リース<span class="en">Lease</span></a>
-  <a href="rental.html" class="active">設備レンタル<span class="en">Rental</span></a>
-  <a href="maintenance.html">ビルメンテナンス<span class="en">Maintenance</span></a>
+  <a href="lease.html" class="sub">設備リース<span class="en">Lease</span></a>
+  <a href="rental.html" class="sub active">設備レンタル<span class="en">Rental</span></a>
+  <a href="maintenance.html" class="sub">ビルメンテナンス<span class="en">Maintenance</span></a>
   <a href="estimate.html">簡易見積り<span class="en">Estimate</span></a>
   <a href="company.html">会社概要<span class="en">Company</span></a>
+  <a href="recruit.html">採用情報<span class="en">Recruit</span></a>
+  <a href="interview.html" class="sub">社員インタビュー<span class="en">Interview</span></a>
+  <a href="data.html" class="sub">データで見るエコリース<span class="en">Data</span></a>
   <a href="contact.html">お問い合わせ<span class="en">Contact</span></a>
+  <div class="drawer-sub">
+    <span class="h">ABOUT</span>
+    <a href="release.html">RE-LEASE（再リースの流れ）</a>
+    <a href="licence.html">保有資格</a>
+    <a href="environment.html">環境方針</a>
+    <a href="sdgs.html">SDGsへの取り組み</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
 </div>
 <section class="page-hero">
   <div class="wrap">
@@ -178,6 +203,20 @@
         <a href="contact.html">お問い合わせ</a>
         <a href="index.html#business">「捨てない」の考え方</a>
       </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="release.html">RE-LEASE（再リースの流れ）</a>
+        <a href="licence.html">保有資格</a>
+        <a href="environment.html">環境方針</a>
+        <a href="sdgs.html">SDGsへの取り組み</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+      <div class="footer-col">
+        <h4>Recruit</h4>
+        <a href="recruit.html">採用情報</a>
+        <a href="interview.html">社員インタビュー</a>
+        <a href="data.html">データで見るエコリース</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span class="latin">© <span id="yr">2026</span> ECO LEASE CO., LTD.</span>
@@ -192,5 +231,6 @@
 <script src="js/lenis.js"></script>
 <script src="js/v4.js"></script>
 <script src="js/v5.js"></script>
+<script src="js/pages.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="a">
+<html lang="ja" data-theme="b">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/v3.css">
 <link rel="stylesheet" href="css/v4.css">
 <link rel="stylesheet" href="css/v5.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body data-screen-label="事業案内">
 
@@ -23,26 +24,50 @@
     </a>
     <nav class="nav">
       <a href="index.html" class="nav-link">TOP</a>
-      <a href="jigyo.html" class="nav-link active">事業案内</a>
-      <a href="lease.html" class="nav-link">設備リース</a>
-      <a href="rental.html" class="nav-link">設備レンタル</a>
-      <a href="maintenance.html" class="nav-link">ビルメンテナンス</a>
+      <div class="nav-dd">
+        <a href="jigyo.html" class="nav-link active" aria-haspopup="true">事業案内<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="jigyo.html" class="all on"><b>事業案内トップ</b><span>Business</span></a>
+          <a href="lease.html"><b>設備リース</b><span>Lease</span></a>
+          <a href="rental.html"><b>設備レンタル</b><span>Rental</span></a>
+          <a href="maintenance.html"><b>ビルメンテナンス</b><span>Maintenance</span></a>
+        </div>
+      </div>
       <a href="estimate.html" class="nav-link">簡易見積り</a>
       <a href="company.html" class="nav-link">会社概要</a>
+      <div class="nav-dd">
+        <a href="recruit.html" class="nav-link" aria-haspopup="true">採用情報<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="recruit.html" class="all"><b>採用トップ</b><span>Recruit</span></a>
+          <a href="interview.html"><b>社員インタビュー</b><span>Interview</span></a>
+          <a href="data.html"><b>データで見るエコリース</b><span>Data</span></a>
+        </div>
+      </div>
       <a href="contact.html" class="nav-cta">お問い合わせ</a>
     </nav>
     <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
   </div>
 </header>
-<div class="drawer">
+<div class="drawer" data-lenis-prevent>
   <a href="index.html">TOP<span class="en">Top</span></a>
   <a href="jigyo.html" class="active">事業案内<span class="en">Business</span></a>
-  <a href="lease.html">設備リース<span class="en">Lease</span></a>
-  <a href="rental.html">設備レンタル<span class="en">Rental</span></a>
-  <a href="maintenance.html">ビルメンテナンス<span class="en">Maintenance</span></a>
+  <a href="lease.html" class="sub">設備リース<span class="en">Lease</span></a>
+  <a href="rental.html" class="sub">設備レンタル<span class="en">Rental</span></a>
+  <a href="maintenance.html" class="sub">ビルメンテナンス<span class="en">Maintenance</span></a>
   <a href="estimate.html">簡易見積り<span class="en">Estimate</span></a>
   <a href="company.html">会社概要<span class="en">Company</span></a>
+  <a href="recruit.html">採用情報<span class="en">Recruit</span></a>
+  <a href="interview.html" class="sub">社員インタビュー<span class="en">Interview</span></a>
+  <a href="data.html" class="sub">データで見るエコリース<span class="en">Data</span></a>
   <a href="contact.html">お問い合わせ<span class="en">Contact</span></a>
+  <div class="drawer-sub">
+    <span class="h">ABOUT</span>
+    <a href="release.html">RE-LEASE（再リースの流れ）</a>
+    <a href="licence.html">保有資格</a>
+    <a href="environment.html">環境方針</a>
+    <a href="sdgs.html">SDGsへの取り組み</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
 </div>
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -79,7 +104,7 @@
           <p>役目を終えた設備を回収し、洗い、整え、修理して、もう一度現場へ。エコリースの事業は「設備リース」「設備レンタル」「ビルメンテナンス」の3つですが、そのすべてが"ひとつの循環"でつながっています。</p>
           <p>浄化槽・受水槽・キュービクルといった大型設備から、空調・防災設備まで。徳島の本社と名古屋・大阪の拠点、5ヶ所の資材置き場を軸に、全国44都道府県の現場へお届けしています。</p>
           <p>使い捨てないこと。それは、企業活動がそのまま環境活動になるということ。私たちはその仕組みを、40年以上かけて育ててきました。</p>
-          <a href="#business-list" class="btn btn-primary">3つの事業を見る</a>
+          <a href="#overview" class="btn btn-primary">3つの事業を見る</a>
         </div>
       </div>
     </div>
@@ -88,9 +113,181 @@
   </div>
 </section>
 
+<!-- ============================================================
+     BUSINESS OVERVIEW「3つの事業を、ひと目で。」（2026-10-30 The Cycle から差し替え）
+     ・タブで切り替え（自動で約7秒ごとに次へ。マウスを乗せると一時停止）
+     ・イラストはすべてインラインSVG。動きは css/pages.css の「BUSINESS OVERVIEW」で調整
+     ・文言は各事業ページ（lease / rental / maintenance）の内容に合わせています
+     ============================================================ -->
+<section class="section tint" id="overview">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Business Overview</span>
+      <h2 class="jp">3つの事業を、ひと目で。</h2>
+      <p class="lead">長く使うならリース、短期ならレンタル、今ある建物の設備を守るならビルメンテナンス。タブを切り替えて、それぞれの違いをご覧ください。</p>
+    </div>
+    <div class="bo reveal d1" data-bo>
+      <div class="bo-tabs" role="tablist"><button type="button" class="bo-tab on" data-k="lease" role="tab" aria-selected="true"><span class="no">01</span><span><span class="en">Lease</span><b>設備リース</b></span><i class="prog"></i></button><button type="button" class="bo-tab" data-k="rental" role="tab" aria-selected="false"><span class="no">02</span><span><span class="en">Rental</span><b>設備レンタル</b></span><i class="prog"></i></button><button type="button" class="bo-tab" data-k="maint" role="tab" aria-selected="false"><span class="no">03</span><span><span class="en">Maintenance</span><b>ビルメンテナンス</b></span><i class="prog"></i></button></div>
+      <div class="bo-stage">
+      <div class="bo-panel on" data-k="lease" role="tabpanel">
+        <div class="bo-art">
+<svg viewBox="0 0 640 340" role="img" aria-label="設備リースのイメージ：資材置き場からトラックで大型設備を運び、仮設（プレハブ）事務所に長期間据え付ける">
+<rect x="0" y="282" width="640" height="58" fill="var(--bo-ground)"/><line x1="0" y1="282" x2="640" y2="282" class="bo-line"/><line x1="150" y1="300" x2="420" y2="300" class="bo-road"/><g class="bo-wh">
+  <path d="M22 282V214l58-30 58 30v68z" class="bo-fill-w"/>
+  <rect x="58" y="236" width="44" height="46" class="bo-fill-g2"/>
+  <path d="M58 248h44M58 260h44M58 272h44" class="bo-thin"/>
+  <circle cx="80" cy="214" r="9" class="bo-leaf"/>
+  <text x="80" y="326" class="bo-cap" text-anchor="middle">エコリース 資材置き場</text>
+</g>
+<g class="bo-truck bo-drive">
+  <rect x="150" y="238" width="78" height="44" rx="4" class="bo-fill-g"/>
+  <rect x="160" y="226" width="26" height="14" rx="2" class="bo-fill-w"/><rect x="192" y="222" width="28" height="18" rx="6" class="bo-fill-w"/>
+  <path d="M228 252h22l14 14v16h-36z" class="bo-fill-w"/>
+  <path d="M234 256h14l9 9h-23z" class="bo-fill-sky"/>
+  <circle cx="172" cy="284" r="9" class="bo-wheel"/><circle cx="246" cy="284" r="9" class="bo-wheel"/>
+</g>
+<g class="bo-site">
+  <rect x="408" y="186" width="200" height="48" class="bo-fill-w"/><rect x="408" y="234" width="200" height="48" class="bo-fill-w"/>
+  <path d="M408 186h200M408 234h200M458 186v96M508 186v96M558 186v96" class="bo-thin"/>
+  <g class="bo-win"><rect x="420" y="198" width="26" height="18"/><rect x="470" y="198" width="26" height="18"/><rect x="520" y="198" width="26" height="18"/><rect x="570" y="198" width="26" height="18"/>
+  <rect x="420" y="246" width="26" height="18"/><rect x="520" y="246" width="26" height="18"/><rect x="570" y="246" width="26" height="18"/></g>
+  <rect x="470" y="244" width="26" height="38" class="bo-fill-g2"/>
+  <path d="M400 186h216" class="bo-roof"/>
+  <text x="470" y="176" class="bo-cap" text-anchor="middle">仮設（プレハブ）事務所</text>
+</g>
+<g class="bo-eq bo-e1"><rect x="330" y="236" width="40" height="46" rx="3" class="bo-fill-g"/><path d="M338 246h24M338 254h24M338 262h24" class="bo-thin-w"/><text x="350" y="326" class="bo-tag" text-anchor="middle">キュービクル</text></g>
+<g class="bo-eq bo-e2"><rect x="560" y="122" width="44" height="40" rx="6" class="bo-fill-g"/><path d="M566 134h32M566 146h32" class="bo-thin-w"/><path d="M572 162v24M592 162v24" class="bo-line"/><text x="582" y="112" class="bo-tag" text-anchor="middle">受水槽</text></g>
+<g class="bo-eq bo-e3"><ellipse cx="420" cy="306" rx="30" ry="11" class="bo-fill-g"/><rect x="414" y="290" width="12" height="10" class="bo-fill-g"/><text x="470" y="326" class="bo-tag">浄化槽</text></g>
+<g class="bo-badge" transform="translate(28 26)">
+  <rect width="190" height="62" rx="12" class="bo-fill-w bo-shadow"/>
+  <text x="16" y="23" class="bo-k">利用期間</text>
+  <text x="16" y="44" class="bo-v">長期（工期に合わせて）</text>
+  <rect x="16" y="50" width="158" height="5" rx="2.5" class="bo-bar-bg"/>
+  <rect x="16" y="50" width="158" height="5" rx="2.5" class="bo-bar bo-bar-long"/>
+</g>
+</svg>
+        </div>
+        <div class="bo-info">
+          <span class="en">01 — Lease</span>
+          <h3>設備リース</h3>
+          <p class="catch">長く使う設備を、計画的に。</p>
+          <dl><dt>期間</dt><dd>長期（工期・運用に合わせたプラン）</dd><dt>設置先</dt><dd>仮設（プレハブ）施設・現場事務所・応急仮設住宅</dd><dt>主な設備</dt><dd>浄化槽・受水槽・キュービクル・変圧器などの大型設備</dd><dt>こんな方に</dt><dd>長期の工事で、必要な設備をまとめて揃えたい</dd></dl>
+          <a href="lease.html" class="txtlink">設備リースを詳しく <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="bo-panel" data-k="rental" role="tabpanel">
+        <div class="bo-art">
+<svg viewBox="0 0 640 340" role="img" aria-label="設備レンタルのイメージ：イベントや短期工事の現場へ空調・消防設備を必要な期間だけ届け、終わったら回収する">
+<rect x="0" y="282" width="640" height="58" fill="var(--bo-ground)"/><line x1="0" y1="282" x2="640" y2="282" class="bo-line"/><line x1="150" y1="300" x2="420" y2="300" class="bo-road"/><g class="bo-wh">
+  <path d="M22 282V214l58-30 58 30v68z" class="bo-fill-w"/>
+  <rect x="58" y="236" width="44" height="46" class="bo-fill-g2"/>
+  <path d="M58 248h44M58 260h44M58 272h44" class="bo-thin"/>
+  <circle cx="80" cy="214" r="9" class="bo-leaf"/>
+  <text x="80" y="326" class="bo-cap" text-anchor="middle">エコリース 資材置き場</text>
+</g>
+<g class="bo-truck bo-round">
+  <rect x="150" y="238" width="78" height="44" rx="4" class="bo-fill-g"/>
+  <rect x="160" y="224" width="30" height="16" rx="2" class="bo-fill-w"/><rect x="194" y="226" width="26" height="14" rx="2" class="bo-fill-w"/>
+  <path d="M228 252h22l14 14v16h-36z" class="bo-fill-w"/>
+  <path d="M234 256h14l9 9h-23z" class="bo-fill-sky"/>
+  <circle cx="172" cy="284" r="9" class="bo-wheel"/><circle cx="246" cy="284" r="9" class="bo-wheel"/>
+</g>
+<g class="bo-site">
+  <path d="M430 282v-64l44-34 44 34 44-34 44 34v64z" class="bo-fill-w"/>
+  <path d="M430 218l44-34 44 34 44-34 44 34" class="bo-roof"/>
+  <path d="M474 184v-22M562 184v-22" class="bo-line"/><path d="M474 162l16 6-16 6zM562 162l16 6-16 6z" class="bo-flag"/>
+  <path d="M498 282v-36h40v36" class="bo-fill-g2"/>
+  <text x="518" y="152" class="bo-cap" text-anchor="middle">イベント・短期工事</text>
+</g>
+<g class="bo-eq bo-e1"><rect x="440" y="236" width="44" height="38" rx="4" class="bo-fill-g"/><circle cx="462" cy="255" r="11" class="bo-fan"/><text x="430" y="326" class="bo-tag">空調</text></g>
+<g class="bo-eq bo-e2"><rect x="556" y="232" width="38" height="50" rx="3" class="bo-fill-g"/><path d="M565 246h20M575 236v20" class="bo-thin-w"/><text x="550" y="326" class="bo-tag">消防設備</text></g>
+<g class="bo-back"><path d="M400 262c-50-36-150-36-196 0" class="bo-arc"/><path d="M204 262l12-2-6 10z" class="bo-flag"/><text x="300" y="226" class="bo-tag" text-anchor="middle">使い終えたら回収</text></g>
+<g class="bo-badge" transform="translate(28 26)">
+  <rect width="190" height="62" rx="12" class="bo-fill-w bo-shadow"/>
+  <text x="16" y="23" class="bo-k">利用期間</text>
+  <text x="16" y="44" class="bo-v">数日〜数ヶ月</text>
+  <rect x="16" y="50" width="158" height="5" rx="2.5" class="bo-bar-bg"/>
+  <rect x="16" y="50" width="158" height="5" rx="2.5" class="bo-bar bo-bar-short"/>
+</g>
+</svg>
+        </div>
+        <div class="bo-info">
+          <span class="en">02 — Rental</span>
+          <h3>設備レンタル</h3>
+          <p class="catch">必要なときに、必要な期間だけ。</p>
+          <dl><dt>期間</dt><dd>数日〜数ヶ月</dd><dt>設置先</dt><dd>イベント・短期工事・繁忙期の増設</dd><dt>主な設備</dt><dd>空調（パッケージエアコン）・消防設備・動力消防ポンプ庫・変圧器</dd><dt>こんな方に</dt><dd>決まった期間だけ、すぐに使いたい</dd></dl>
+          <a href="rental.html" class="txtlink">設備レンタルを詳しく <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="bo-panel" data-k="maint" role="tabpanel">
+        <div class="bo-art">
+<svg viewBox="0 0 640 340" role="img" aria-label="ビルメンテナンスのイメージ：既存の建物の設備を定期的に点検・清掃・修繕する">
+<rect x="0" y="282" width="640" height="58" fill="var(--bo-ground)"/><line x1="0" y1="282" x2="640" y2="282" class="bo-line"/>
+<g class="bo-site">
+  <rect x="300" y="96" width="170" height="186" class="bo-fill-w"/>
+  <g class="bo-win"><rect x="316" y="112" width="24" height="22"/><rect x="354" y="112" width="24" height="22"/><rect x="392" y="112" width="24" height="22"/><rect x="430" y="112" width="24" height="22"/><rect x="316" y="150" width="24" height="22"/><rect x="354" y="150" width="24" height="22"/><rect x="392" y="150" width="24" height="22"/><rect x="430" y="150" width="24" height="22"/><rect x="316" y="188" width="24" height="22"/><rect x="354" y="188" width="24" height="22"/><rect x="392" y="188" width="24" height="22"/><rect x="430" y="188" width="24" height="22"/><rect x="316" y="226" width="24" height="22"/><rect x="354" y="226" width="24" height="22"/><rect x="392" y="226" width="24" height="22"/><rect x="430" y="226" width="24" height="22"/></g>
+  <rect x="368" y="250" width="34" height="32" class="bo-fill-g2"/>
+  <path d="M292 96h186" class="bo-roof"/>
+  <text x="385" y="326" class="bo-cap" text-anchor="middle">オフィスビル・施設</text>
+</g>
+<g class="bo-eq-s"><rect x="314" y="72" width="34" height="24" rx="3" class="bo-fill-g"/><circle cx="331" cy="84" r="7" class="bo-fan"/></g>
+<g class="bo-eq-s"><rect x="410" y="66" width="44" height="30" rx="5" class="bo-fill-g"/><path d="M416 78h32" class="bo-thin-w"/></g>
+<g class="bo-eq-s"><rect x="480" y="236" width="30" height="46" rx="3" class="bo-fill-g"/><path d="M486 248h18M486 258h18" class="bo-thin-w"/></g>
+<g class="bo-scan"><circle r="20" class="bo-lens"/><path d="M14 14l16 16" class="bo-handle"/></g>
+<g class="bo-van">
+  <rect x="120" y="244" width="96" height="38" rx="8" class="bo-fill-w"/><path d="M192 244h10l14 16v22h-24z" class="bo-fill-sky"/>
+  <rect x="132" y="254" width="40" height="12" rx="2" class="bo-fill-g"/>
+  <circle cx="142" cy="284" r="9" class="bo-wheel"/><circle cx="196" cy="284" r="9" class="bo-wheel"/>
+  <text x="168" y="326" class="bo-cap" text-anchor="middle">技術スタッフ</text>
+</g>
+<g transform="translate(500 120)">
+  <g class="bo-chk bo-c1"><rect width="118" height="30" rx="15" class="bo-fill-w bo-shadow"/><circle cx="15" cy="15" r="9" class="bo-ok"/><path d="M10 15l4 4 7-8" class="bo-tick"/><text x="32" y="20" class="bo-v">点検</text></g>
+  <g transform="translate(0 38)"><g class="bo-chk bo-c2"><rect width="118" height="30" rx="15" class="bo-fill-w bo-shadow"/><circle cx="15" cy="15" r="9" class="bo-ok"/><path d="M10 15l4 4 7-8" class="bo-tick"/><text x="32" y="20" class="bo-v">清掃</text></g></g>
+  <g transform="translate(0 76)"><g class="bo-chk bo-c3"><rect width="118" height="30" rx="15" class="bo-fill-w bo-shadow"/><circle cx="15" cy="15" r="9" class="bo-ok"/><path d="M10 15l4 4 7-8" class="bo-tick"/><text x="32" y="20" class="bo-v">修繕</text></g></g>
+</g>
+<g class="bo-badge" transform="translate(28 26)">
+  <rect width="190" height="62" rx="12" class="bo-fill-w bo-shadow"/>
+  <text x="16" y="23" class="bo-k">ご契約</text><text x="16" y="44" class="bo-v">定期点検・継続管理</text>
+  <g transform="translate(160 31)"><path d="M-10 0a10 10 0 1 1 3 7" class="bo-spin"/><path d="M-12 4l5 3 1-6" class="bo-flag"/></g>
+</g>
+</svg>
+        </div>
+        <div class="bo-info">
+          <span class="en">03 — Maintenance</span>
+          <h3>ビルメンテナンス</h3>
+          <p class="catch">今ある建物の設備を、長く安全に。</p>
+          <dl><dt>期間</dt><dd>定期点検・継続管理</dd><dt>対象</dt><dd>既存の建物・施設の電気／給排水／空調／防災設備</dd><dt>主な内容</dt><dd>点検・清掃・修繕・更新のご提案・防災設備保守</dd><dt>こんな方に</dt><dd>設備のトラブルを未然に防ぎ、長く使い続けたい</dd></dl>
+          <a href="maintenance.html" class="txtlink">ビルメンテナンスを詳しく <span class="arr">→</span></a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="bo-compare reveal">
+      <h3 class="bo-compare-h"><span class="en">Comparison</span>早見表</h3>
+      <div class="bo-table-wrap" data-lenis-prevent>
+        <table class="bo-table">
+          <thead><tr><td></td><th><span class="en">Lease</span>設備リース</th><th><span class="en">Rental</span>設備レンタル</th><th><span class="en">Maintenance</span>ビルメンテナンス</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">ひとことで</th><td>長く使う設備を計画的に</td><td>必要な期間だけ借りる</td><td>今ある設備を守る</td></tr>
+            <tr><th scope="row">期間</th><td>長期</td><td>数日〜数ヶ月</td><td>定期・継続</td></tr>
+            <tr><th scope="row">設置先・対象</th><td>仮設施設・現場事務所・応急仮設住宅</td><td>イベント・短期工事・繁忙期</td><td>既存の建物・施設</td></tr>
+            <tr><th scope="row">主な設備・内容</th><td>浄化槽・受水槽・キュービクル等</td><td>空調・消防設備・変圧器等</td><td>点検・清掃・修繕・防災保守</td></tr>
+            <tr><th scope="row">輸送・設置</th><td>〇 一括対応</td><td>〇 一括対応</td><td>—（現地で作業）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 3 BUSINESSES -->
 <section class="section" id="business-list">
   <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our Business</span>
+      <h2 class="jp">各事業について</h2>
+    </div>
     <div class="biz-list">
 
       <article class="biz-row reveal">
@@ -130,97 +327,6 @@
   </div>
 </section>
 
-<!-- CYCLE -->
-<section class="section tint">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow center">The Cycle</span>
-      <h2 class="jp">3つの事業が、ひとつの循環になる。</h2>
-      <p class="lead">回収・整備・保管・再提供。各事業がつながることで、設備は何度も現場へ還ります。それが「捨てない」を支える仕組みです。</p>
-    </div>
-    <!-- v5：カードが下から上へ積み上がる（ceep.co.jp/service 参照）
-         ・901px以上かつJS有効のときだけ重ね積み。スマホ／JS無効では縦並びカードとして読めます
-         ・尺は js/v5.js の collectStacks() の「panels.length * 84 + 30」で調整できます -->
-    <div class="cyc-stack reveal d1" data-cycle-stack>
-      <div class="cyc-sticky">
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 01</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-2-2M20 17H7l2 2"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <h4>回収</h4>
-          <p class="lead">役目を終えた設備を、全国の現場から回収します。まだ使えるものを見極めるところから、循環は始まります。</p>
-          <span class="big" aria-hidden="true">01</span>
-        </div>
-        <div class="media"><img src="img/transformer.jpg" alt="回収した変圧器"></div>
-      </article>
-
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 02</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/><path d="M3 20h18"/></svg></div>
-          <h4>洗浄・点検</h4>
-          <p class="lead">一台ずつ丁寧に洗い、動作と劣化の状態をチェック。再び現場に出せるかどうかを、ここで見極めます。</p>
-          <span class="big" aria-hidden="true">02</span>
-        </div>
-        <div class="media"><img src="img/tank.jpg" alt="洗浄・点検を終えた受水槽"></div>
-      </article>
-
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 03</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l4-1L20 7a2 2 0 0 0-3-3L4 17z"/></svg></div>
-          <h4>整備・修理</h4>
-          <p class="lead">不具合のある箇所は直し、部品を替え、性能を回復させます。手間をかけるほど、設備の寿命は延びていきます。</p>
-          <span class="big" aria-hidden="true">03</span>
-        </div>
-        <div class="media"><img src="img/cubicle.jpg" alt="整備後のキュービクル"></div>
-      </article>
-
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 04</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5v9l-9 5-9-5z"/><path d="M3 9l9 5 9-5"/></svg></div>
-          <h4>保管</h4>
-          <p class="lead">次の出番まで、資材置き場で適切にストック。5ヶ所の置き場が、すぐ届けられる体制を支えています。</p>
-          <span class="big" aria-hidden="true">04</span>
-        </div>
-        <div class="media"><img src="img/johkasou.jpg" alt="資材置き場で保管中の浄化槽"></div>
-      </article>
-
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 05</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h18v11H3z"/><path d="M3 11h18M8 18v3M16 18v3"/></svg></div>
-          <h4>リース／レンタル</h4>
-          <p class="lead">必要とされる現場へ、必要な期間だけお届け。長期ならリース、短期ならレンタルでお応えします。</p>
-          <span class="big" aria-hidden="true">05</span>
-        </div>
-        <div class="media"><img src="img/aircon.jpg" alt="現場へ向かう空調設備"></div>
-      </article>
-
-      <article class="cyc-panel">
-        <div class="body">
-          <span class="n">STEP 06</span>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6l4-2M12 21a9 9 0 1 0-9-9"/></svg></div>
-          <h4>再活用</h4>
-          <p class="lead">そしてまた、誰かの現場で活躍する。使い終わりは終点ではなく、次のはじまりです。</p>
-          <span class="big" aria-hidden="true">06</span>
-        </div>
-        <div class="media"><img src="img/pump.jpg" alt="再び現場で使われる消防設備"></div>
-      </article>
-
-        <div class="cyc-rail" aria-hidden="true">
-        <span class="r on"><i></i>01<span class="jp">回収</span></span>
-        <span class="r"><i></i>02<span class="jp">洗浄・点検</span></span>
-        <span class="r"><i></i>03<span class="jp">整備・修理</span></span>
-        <span class="r"><i></i>04<span class="jp">保管</span></span>
-        <span class="r"><i></i>05<span class="jp">リース／レンタル</span></span>
-        <span class="r"><i></i>06<span class="jp">再活用</span></span>
-        </div>
-      </div>
-    </div>
-    </div>
-</section>
 
 <!-- CTA -->
 <section class="cta-band">
@@ -260,6 +366,20 @@
         <a href="contact.html">お問い合わせ</a>
         <a href="index.html#business">「捨てない」の考え方</a>
       </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="release.html">RE-LEASE（再リースの流れ）</a>
+        <a href="licence.html">保有資格</a>
+        <a href="environment.html">環境方針</a>
+        <a href="sdgs.html">SDGsへの取り組み</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+      <div class="footer-col">
+        <h4>Recruit</h4>
+        <a href="recruit.html">採用情報</a>
+        <a href="interview.html">社員インタビュー</a>
+        <a href="data.html">データで見るエコリース</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span class="latin">© <span id="yr">2026</span> ECO LEASE CO., LTD.</span>
@@ -274,5 +394,6 @@
 <script src="js/lenis.js"></script>
 <script src="js/v4.js"></script>
 <script src="js/v5.js"></script>
+<script src="js/pages.js"></script>
 </body>
 </html>

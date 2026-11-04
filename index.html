@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="a">
+<html lang="ja" data-theme="b">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/v3.css">
 <link rel="stylesheet" href="css/v4.css">
 <link rel="stylesheet" href="css/v5.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body data-screen-label="トップページ">
 
@@ -45,12 +46,25 @@
     </a>
     <nav class="nav">
       <a href="index.html" class="nav-link active">TOP</a>
-      <a href="jigyo.html" class="nav-link">事業案内</a>
-      <a href="lease.html" class="nav-link">設備リース</a>
-      <a href="rental.html" class="nav-link">設備レンタル</a>
-      <a href="maintenance.html" class="nav-link">ビルメンテナンス</a>
+      <div class="nav-dd">
+        <a href="jigyo.html" class="nav-link" aria-haspopup="true">事業案内<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="jigyo.html" class="all"><b>事業案内トップ</b><span>Business</span></a>
+          <a href="lease.html"><b>設備リース</b><span>Lease</span></a>
+          <a href="rental.html"><b>設備レンタル</b><span>Rental</span></a>
+          <a href="maintenance.html"><b>ビルメンテナンス</b><span>Maintenance</span></a>
+        </div>
+      </div>
       <a href="estimate.html" class="nav-link">簡易見積り</a>
       <a href="company.html" class="nav-link">会社概要</a>
+      <div class="nav-dd">
+        <a href="recruit.html" class="nav-link" aria-haspopup="true">採用情報<i class="caret" aria-hidden="true"></i></a>
+        <div class="nav-dd-menu">
+          <a href="recruit.html" class="all"><b>採用トップ</b><span>Recruit</span></a>
+          <a href="interview.html"><b>社員インタビュー</b><span>Interview</span></a>
+          <a href="data.html"><b>データで見るエコリース</b><span>Data</span></a>
+        </div>
+      </div>
       <a href="contact.html" class="nav-cta">お問い合わせ</a>
     </nav>
     <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
@@ -58,22 +72,33 @@
 </header>
 
 <!-- ============ MOBILE DRAWER ============ -->
-<div class="drawer">
+<div class="drawer" data-lenis-prevent>
   <a href="index.html" class="active">TOP<span class="en">Top</span></a>
   <a href="jigyo.html">事業案内<span class="en">Business</span></a>
-  <a href="lease.html">設備リース<span class="en">Lease</span></a>
-  <a href="rental.html">設備レンタル<span class="en">Rental</span></a>
-  <a href="maintenance.html">ビルメンテナンス<span class="en">Maintenance</span></a>
+  <a href="lease.html" class="sub">設備リース<span class="en">Lease</span></a>
+  <a href="rental.html" class="sub">設備レンタル<span class="en">Rental</span></a>
+  <a href="maintenance.html" class="sub">ビルメンテナンス<span class="en">Maintenance</span></a>
   <a href="estimate.html">簡易見積り<span class="en">Estimate</span></a>
   <a href="company.html">会社概要<span class="en">Company</span></a>
+  <a href="recruit.html">採用情報<span class="en">Recruit</span></a>
+  <a href="interview.html" class="sub">社員インタビュー<span class="en">Interview</span></a>
+  <a href="data.html" class="sub">データで見るエコリース<span class="en">Data</span></a>
   <a href="contact.html">お問い合わせ<span class="en">Contact</span></a>
+  <div class="drawer-sub">
+    <span class="h">ABOUT</span>
+    <a href="release.html">RE-LEASE（再リースの流れ）</a>
+    <a href="licence.html">保有資格</a>
+    <a href="environment.html">環境方針</a>
+    <a href="sdgs.html">SDGsへの取り組み</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
 </div>
 <!-- ============ HERO ============ -->
 <section class="hero" data-screen-label="ヒーロー">
   <div class="wrap-wide hero-inner">
     <div class="hero-copy reveal">
       <span class="theme-only-b hero" style="display:none"></span>
-      <p class="hero-eyebrow">Business model not to throw away</p>
+      <p class="hero-eyebrow">Zero-Waste Business Model<span class="orn" aria-hidden="true"><i></i></span></p>
       <h1>捨てない、<br>という<span class="dim">ビジネスモデル</span>。</h1>
       <p class="sub">設備を「使い捨て」にしない。回収し、洗い、整え、また活かす。<br>まだ使える設備に、もう一度価値を。エコリースは、リース・レンタル・ビルメンテナンスで循環を担います。</p>
       <div class="hero-cta">
@@ -248,7 +273,7 @@
     <div class="inner v5-rise">
       <span class="en">Beyond Waste</span>
       <h2>まだ使える設備を、<br>次の現場へ。</h2>
-      <p>回収し、洗い、整えて、もう一度おくり出す。<br>その一周ごとに、燃やされるはずだったものが減っていきます。<br>私たちの仕事は、そのまま環境への仕事です。</p>
+      <p>回収し、洗い、整えて、もう一度おくり出す。<br>その一周ごとに、燃やされるはずだったものが減っていきます。<br>設備に命を吹き込む、それが私たちの仕事です。</p>
       <a href="jigyo.html" class="btn btn-primary">事業案内を見る</a>
     </div>
   </div>
@@ -260,7 +285,7 @@
     <div class="wrap">
       <span class="eyebrow center">Our Business</span>
       <h2>3つの事業で、循環をつくる。</h2>
-      <p>回収から再活用まで。エコリースは「設備リース」「設備レンタル」「ビルメンテナンス」を一貫して担い、設備の一生に寄り添います。</p>
+      <p class="bz-lead">回収から再活用まで。エコリースは「設備リース」「設備レンタル」<br>「ビルメンテナンス」を一貫して担い、設備の一生に寄り添います。</p>
     </div>
   </div>
 
@@ -316,22 +341,99 @@
   </div>
 </section>
 
-<!-- ============ CYCLE ============ -->
-<section class="section">
+<!-- ============ CYCLE（RE-LEASE：再リースまでの流れ）============
+     ・release.html の循環図とステップをTOP用に移植（写真・設備一例は release.html 側のみ）
+     ・図とリストはホバーで連動（js/pages.js の [data-rl]）
+     ・文言を変える場合は release.html と両方を揃えてください -->
+<section class="section" id="cycle">
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow center">The Cycle</span>
-      <h2 class="jp">「捨てない」をつくる、6つの工程。</h2>
-      <p class="lead">設備は使い終わりが終点ではありません。エコリースの手を通って、何度も現場へ還っていきます。</p>
+      <h2 class="jp">一度使った設備を、もう一度、現場へ。</h2>
+      <p class="lead">撤収から取付まで。小さなスイッチから大型のキュービクル・浄化槽まで、設備は使い終わりが終点ではありません。エコリースの手を通って、何度も現場へ還っていきます。</p>
     </div>
-    <div class="cycle reveal d1">
-      <div class="step"><span class="n">STEP 01</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-2-2M20 17H7l2 2"/><circle cx="12" cy="12" r="9"/></svg></div><h4>回収</h4><p>役目を終えた設備を全国から回収</p></div>
-      <div class="step"><span class="n">STEP 02</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/><path d="M3 20h18"/></svg></div><h4>洗浄・点検</h4><p>丁寧に洗い、状態をチェック</p></div>
-      <div class="step"><span class="n">STEP 03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l4-1L20 7a2 2 0 0 0-3-3L4 17z"/></svg></div><h4>整備・修理</h4><p>不具合は直し、性能を回復</p></div>
-      <div class="step"><span class="n">STEP 04</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5v9l-9 5-9-5z"/><path d="M3 9l9 5 9-5"/></svg></div><h4>保管</h4><p>資材置き場で適切にストック</p></div>
-      <div class="step"><span class="n">STEP 05</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h18v11H3z"/><path d="M3 11h18M8 18v3M16 18v3"/></svg></div><h4>リース／レンタル</h4><p>次の現場へ再びお届け</p></div>
-      <div class="step"><span class="n">STEP 06</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6l4-2M12 21a9 9 0 1 0-9-9"/></svg></div><h4>再活用</h4><p>また誰かの現場で活躍</p></div>
+    <!-- 左：循環図／右：工程カード（スクロールでカードが1枚ずつせり上がり、左図の工程が光る）
+         ・901px以上かつJS有効のときだけピン留め。スマホ／JS無効では図→カード縦並び
+         ・尺は js/pages.js の RL_PIN_VH（カード1枚あたりのスクロール量）で調整
+         ・図の丸をクリックすると、その工程のカードまでスクロールします -->
+    <div class="rl-pin" data-rl-pin>
+      <div class="rl-pin-sticky">
+        <div class="rl-pin-grid">
+          <div class="rl-ring reveal">
+<svg viewBox="-20 -20 580 600" role="img" aria-label="再リースまでの循環：撤収、清掃・点検、（必要に応じて交換修理）、搬入、取付">
+<path class="arc" d="M327.1,109.3 A165,165 0 0 1 407.0,185.1"/>
+<path class="arc-head" d="M416.1,202.9 L420.4,178.3 L393.7,191.9Z"/>
+<path class="arc" d="M410.7,327.1 A165,165 0 0 1 334.9,407.0"/>
+<path class="arc-head" d="M317.1,416.1 L341.7,420.4 L328.1,393.7Z"/>
+<path class="arc" d="M192.9,410.7 A165,165 0 0 1 113.0,334.9"/>
+<path class="arc-head" d="M103.9,317.1 L99.6,341.7 L126.3,328.1Z"/>
+<path class="arc" d="M109.3,192.9 A165,165 0 0 1 185.1,113.0"/>
+<path class="arc-head" d="M202.9,103.9 L178.3,99.6 L191.9,126.3Z"/>
+<path class="branch" d="M435,322 Q465,340 455,390"/>
+<path class="branch" d="M407,450 Q370,480 328,433"/>
+<text class="center-t" x="260" y="264" text-anchor="middle">RE-LEASE</text>
+<text class="center-s" x="260" y="296" text-anchor="middle">再リースの循環</text>
+<g class="node" data-i="1"><circle cx="260.0" cy="95.0" r="56"/><text x="260.0" y="105.0" text-anchor="middle">撤収</text></g>
+<g class="node" data-i="2"><circle cx="425.0" cy="260.0" r="56"/><text x="425.0" y="256.0" text-anchor="middle">清掃</text><text x="425.0" y="284.0" text-anchor="middle">点検</text></g>
+<g class="node" data-i="4"><circle cx="260.0" cy="425.0" r="56"/><text x="260.0" y="435.0" text-anchor="middle">搬入</text></g>
+<g class="node" data-i="5"><circle cx="95.0" cy="260.0" r="56"/><text x="95.0" y="270.0" text-anchor="middle">取付</text></g>
+<g class="node" data-i="3"><circle cx="455" cy="440" r="48" style="stroke-dasharray:8 6"/><text x="455" y="436" text-anchor="middle" style="font-size:21px">交換</text><text x="455" y="462" text-anchor="middle" style="font-size:21px">修理</text></g>
+<text class="n" x="455" y="512" text-anchor="middle" style="font-family:var(--serif);font-size:13px;fill:var(--ink-faint);letter-spacing:.1em">故障があれば</text>
+</svg>
+          </div>
+          <div class="rl-deck reveal d1">
+          <article class="rl-card" data-i="1">
+            <div class="body">
+              <span class="n"><b>01</b>Removal</span>
+              <h4><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-2-2M20 17H7l2 2"/><circle cx="12" cy="12" r="9"/></svg></span>工事の終わった現場から設備を撤収</h4>
+              <p>リース現場から機器を取り外して引き取ります。小さなスイッチから大型のキュービクル・浄化槽まで、すべて回収。</p>
+            </div>
+            <!-- ▼ 写真は仮（事業案内と共用）。工程ごとの実写真に差し替え ▼ -->
+            <div class="media"><img src="img/transformer.jpg" alt="回収した変圧器"></div>
+          </article>
+          <article class="rl-card" data-i="2">
+            <div class="body">
+              <span class="n"><b>02</b>Cleaning</span>
+              <h4><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/><path d="M3 20h18"/></svg></span>清掃・点検</h4>
+              <p>可能な物は専用の洗剤で付け置き洗い。不可な物はふき取りを行い、状態を確かめます。</p>
+            </div>
+            <!-- ▼ 写真は仮（事業案内と共用）。工程ごとの実写真に差し替え ▼ -->
+            <div class="media"><img src="img/tank.jpg" alt="清掃・点検を終えた受水槽"></div>
+          </article>
+          <article class="rl-card" data-i="3">
+            <div class="body">
+              <span class="n"><b>03</b>Repair</span>
+              <h4><span class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l4-1L20 7a2 2 0 0 0-3-3L4 17z"/></svg></span>故障などがあれば交換修理<span class="tag">必要時</span></h4>
+              <p>試運転できる物は実際に動かして確認。故障があれば部品を調達して修理します。</p>
+            </div>
+            <!-- ▼ 写真は仮（事業案内と共用）。工程ごとの実写真に差し替え ▼ -->
+            <div class="media"><img src="img/cubicle.jpg" alt="修理・点検後のキュービクル"></div>
+          </article>
+          <article class="rl-card" data-i="4">
+            <div class="body">
+              <span class="n"><b>04</b>Delivery</span>
+              <h4><span class="ic"><svg viewBox="0 0 24 24"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>搬入</h4>
+              <p>図面から必要な設備を倉庫で拾い出し、指定の納期・場所へ車を手配して輸送します。</p>
+            </div>
+            <!-- ▼ 写真は仮（事業案内と共用）。工程ごとの実写真に差し替え ▼ -->
+            <div class="media"><img src="img/johkasou.jpg" alt="出荷を待つ浄化槽"></div>
+          </article>
+          <article class="rl-card" data-i="5">
+            <div class="body">
+              <span class="n"><b>05</b>Install</span>
+              <h4><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5v9l-9 5-9-5z"/><path d="M3 9l9 5 9-5M12 14v9"/></svg></span>取付</h4>
+              <p>工事課が施工管理をしながら、電気・防災・給排水・空調の設備を設置。そしてまた、次の撤収へ。</p>
+            </div>
+            <!-- ▼ 写真は仮（事業案内と共用）。工程ごとの実写真に差し替え ▼ -->
+            <div class="media"><img src="img/aircon.jpg" alt="現場に設置された空調設備"></div>
+          </article>
+            <div class="rl-dots" aria-hidden="true"><i data-i="1"></i><i data-i="2"></i><i data-i="3"></i><i data-i="4"></i><i data-i="5"></i></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <p class="reveal" style="text-align:center;margin-top:clamp(20px,2.4vw,32px)"><a class="btn btn-primary" href="release.html">再リースの流れを詳しく見る <span class="arr">→</span></a></p>
   </div>
 </section>
 
@@ -422,6 +524,20 @@
         <a href="contact.html">お問い合わせ</a>
         <a href="index.html#business">「捨てない」の考え方</a>
       </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="release.html">RE-LEASE（再リースの流れ）</a>
+        <a href="licence.html">保有資格</a>
+        <a href="environment.html">環境方針</a>
+        <a href="sdgs.html">SDGsへの取り組み</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+      <div class="footer-col">
+        <h4>Recruit</h4>
+        <a href="recruit.html">採用情報</a>
+        <a href="interview.html">社員インタビュー</a>
+        <a href="data.html">データで見るエコリース</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span class="latin">© <span id="yr">2026</span> ECO LEASE CO., LTD.</span>
@@ -436,5 +552,6 @@
 <script src="js/lenis.js"></script>
 <script src="js/v4.js"></script>
 <script src="js/v5.js"></script>
+<script src="js/pages.js"></script>
 </body>
 </html>
