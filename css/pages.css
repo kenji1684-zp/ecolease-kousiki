@@ -597,3 +597,28 @@ html[data-theme="b"] .rl-step{border-radius:20px}
 /* TOP「Our Business」リード文：指定位置で改行（2026-11-04）。PCは自動折り返しさせない */
 .bizstage-head p.bz-lead{max-width:none}
 @media(max-width:760px){.bizstage-head p.bz-lead br{display:none}}
+
+/* =========================================================
+   お問い合わせ帯：電話番号をボタン化（2026-11-04 クライアント提案）
+   ・スマホではタップでそのまま発信（tel:リンク）
+   ========================================================= */
+.cta-band p.cta-lead{max-width:none}
+.cta-band .tel-btn{
+  display:inline-flex;align-items:center;gap:14px;padding:10px 26px 10px 10px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.06);color:#fff;
+  font-family:var(--latin);letter-spacing:.04em;line-height:1.15;text-align:left;
+  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
+}
+.cta-band .tel-btn:hover{background:rgba(255,255,255,.14);border-color:var(--green);transform:translateY(-2px)}
+.cta-band .tel-btn .ic{width:44px;height:44px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0;
+  box-shadow:0 8px 20px -8px rgba(140,198,63,.8)}
+.cta-band .tel-btn .ic svg{width:21px;height:21px;fill:#fff}
+.cta-band .tel-btn .tx{display:flex;flex-direction:column}
+.cta-band .tel-btn small{font-family:var(--serif);font-size:11px;letter-spacing:.06em;color:#c8d2bc}
+.cta-band .tel-btn b{font-weight:500;font-size:26px}
+@media(max-width:600px){
+  .cta-band .cta-row{flex-direction:column;align-items:stretch;max-width:340px;margin-inline:auto}
+  .cta-band .cta-row .btn{justify-content:center}
+  .cta-band .tel-btn{justify-content:flex-start;padding-right:18px}
+  .cta-band .tel-btn b{font-size:24px}
+}
