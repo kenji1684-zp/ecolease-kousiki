@@ -622,3 +622,10 @@ html[data-theme="b"] .rl-step{border-radius:20px}
   .cta-band .tel-btn{justify-content:flex-start;padding-right:18px}
   .cta-band .tel-btn b{font-size:24px}
 }
+
+/* TOP見出し（2026-11-04）：「ビジネスモデル。」を絶対に途中で折り返さない
+   1行分（約8.6文字）が画面幅・テキスト欄に収まるよう文字サイズを自動調整 */
+.hero h1{font-size:clamp(34px,min(7.6vw,calc((100vw - 2 * var(--gutter)) / 8.8)),88px);max-width:none;width:max-content}
+.hero h1 .nowrap{white-space:nowrap}
+.hero h1 .dim{color:var(--accent)}
+@media(max-width:760px){.hero h1{font-size:calc((100vw - 2 * var(--gutter)) / 8.8)}}
