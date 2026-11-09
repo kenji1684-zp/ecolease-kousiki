@@ -194,6 +194,69 @@
     } else { visible = true; restart(); }
   });
 
+
+
+  /* 9. TOP オールインワン・サイクル（[data-ac]）
+        ・リング上をリース品の箱が一周 AC_LAP ミリ秒でめぐり、近くの工程が光る
+        ・工程（図の丸／右の一覧）をクリックすると、その工程の説明に切り替わり、箱もそこから再開
+        ・画面外では止める。「視差効果を減らす」設定では動かさない */
+  var AC_LAP = 21000;
+  $$('[data-ac]').forEach(function (root) {
+    var data; try { data = JSON.parse(document.getElementById('acData').textContent); } catch (e) { return; }
+    var N = data.length, R = 262, C = 400;
+    var crate = root.querySelector('.ac-crate'), trail = root.querySelector('.ac-trail');
+    var sts = $$('.ac-st', root), lbls = $$('.ac-lbl', root), lis = $$('.ac-list li', root);
+    var det = root.querySelector('.ac-detail'), dn = det.querySelector('.ac-d-n'), dt = det.querySelector('.ac-d-t'), dp = det.querySelector('.ac-d-p');
+    var cur = -1, t0 = performance.now(), offset = 0, visible = false, raf = null;
+    function select(i) {
+      if (i === cur) return; cur = i;
+      sts.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      lbls.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      lis.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      dn.textContent = ('0' + (i + 1)).slice(-2) + ' — ' + data[i].en.toUpperCase();
+      dt.textContent = data[i].t; dp.textContent = data[i].p;
+      det.classList.remove('swap'); void det.offsetWidth; det.classList.add('swap');
+    }
+    function place(frac) {   // frac: 0〜1（0 = 真上の01）
+      var a = -Math.PI / 2 + frac * Math.PI * 2;
+      crate.setAttribute('transform', 'translate(' + (C + R * Math.cos(a)).toFixed(1) + ' ' + (C + R * Math.sin(a)).toFixed(1) + ')');
+      trail.style.strokeDasharray = (frac * 1000).toFixed(1) + ' 1000';
+      select(Math.min(N - 1, Math.floor((frac + .5 / N) * N) % N));
+    }
+    function tick(now) {
+      raf = null; if (!visible) return;
+      var frac = (((now - t0) / AC_LAP) + offset) % 1;
+      place(frac); raf = requestAnimationFrame(tick);
+    }
+    function start() { if (!raf && visible && !REDUCE) raf = requestAnimationFrame(tick); }
+    function jump(i) {
+      offset = i / N; t0 = performance.now(); place(offset);
+    }
+    sts.forEach(function (s, i) {
+      s.addEventListener('click', function () { jump(i); });
+      s.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(i); } });
+    });
+    lis.forEach(function (li, i) { li.addEventListener('click', function () { jump(i); }); });
+    place(0);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          var was = visible; visible = e.isIntersecting;
+          if (visible && !was) { t0 = performance.now() - ((offset % 1) * 0); start(); }
+          if (!visible && raf) { cancelAnimationFrame(raf); raf = null; offset = ((performance.now() - t0) / AC_LAP + offset) % 1; t0 = performance.now(); }
+        });
+      }, { threshold: .2 }).observe(root);
+    } else { visible = true; start(); }
+  });
+
+  /* ① ワンストップ：図とフローの出現 */
+  (function () {
+    var els = $$('.os-hub, .os-flow');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .3 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
   /* 6. 印刷 */
   window.addEventListener('beforeprint', function () { $$('details').forEach(function (d) { d.open = true; }); });
 })();
