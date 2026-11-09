@@ -261,3 +261,14 @@
   /* 6. 印刷 */
   window.addEventListener('beforeprint', function () { $$('details').forEach(function (d) { d.open = true; }); });
 })();
+
+/* メンテナンス ABOUT のイラスト：画面に入ったら建物が順に立ち上がる */
+(function () {
+  var els = document.querySelectorAll('[data-mi]');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  els.forEach(function (e) { io.observe(e); });
+})();

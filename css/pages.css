@@ -834,3 +834,47 @@ h2.bx,h3.bx,h4.bx,dt.bx,.news-item.bx,.os-list li.bx{text-wrap:balance}
 p.bx,li.bx,dd.bx{text-wrap:pretty}
 /* お知らせ詳細：スマホで記事が画面幅をはみ出していた不具合の修正（グリッドの最小幅を解除） */
 .art-wrap>*{min-width:0}
+
+/* ==========================================================
+   メンテナンス ABOUT：建物と設備のアイソメトリック・アニメーション
+   （徳島県建築士会TOPのイラストを移植し、エコリースの配色に変更）
+   ========================================================== */
+.split-media.mi-wrap{background:none;border-radius:0;display:flex;align-items:center;justify-content:center;overflow:visible}
+.mi-wrap svg{width:100%;height:auto;max-height:100%;overflow:visible}
+.mi-s{stroke:#2a4527;stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}
+.mi-ground{fill:#f3f8ea}
+.mi-t{fill:#fff}
+.mi-l{fill:#eef5e3}
+.mi-r{fill:#d6e8c2}
+.mi-g{fill:#c4dfa4}
+.mi-acc{fill:var(--green,#8cc63f)}
+.mi-ind{fill:var(--green-deep,#46781a)}
+.mi-tree{fill:#9fcf6a}
+.mi-cloud{fill:#fff;stroke:#2f4a2c;stroke-width:1.4;stroke-linejoin:round}
+.mi-blink{fill:#e9582a}
+/* 登場：地面の上に建物・クレーン・木がぽんぽんと立ち上がる */
+.mi-wrap [data-pop]{opacity:0;transform:translateY(-28px) scale(.92);transform-box:fill-box;transform-origin:50% 100%;
+  transition:opacity .5s ease calc(.35s + var(--i)*.12s),transform .9s cubic-bezier(.34,1.56,.64,1) calc(.35s + var(--i)*.12s)}
+.mi-wrap.in [data-pop]{opacity:1;transform:none}
+/* 常時の動き */
+.mi-hook{animation:miSwing 3.4s ease-in-out infinite alternate}
+@keyframes miSwing{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.mi-blink{animation:miBlink 1.6s steps(1) infinite}
+@keyframes miBlink{50%{opacity:.15}}
+.mi-drone{animation:miHover 3.2s ease-in-out infinite}
+@keyframes miHover{0%,100%{transform:translate(0,0)}50%{transform:translate(-10px,-9px)}}
+.mi-rotor{transform-box:fill-box;transform-origin:50% 50%;animation:miRotor .18s linear infinite alternate}
+@keyframes miRotor{to{transform:scaleX(.35)}}
+.mi-cloud{animation:miCloud 14s ease-in-out infinite alternate}
+.mi-c2{animation-duration:18s;animation-delay:-6s}
+.mi-c3{animation-duration:11s;animation-delay:-3s}
+@keyframes miCloud{from{transform:translateX(-14px)}to{transform:translateX(16px)}}
+/* 窓がところどころ灯る */
+.mi-wrap.in .mi-g:nth-child(5n+2){animation:miWin 5s ease-in-out infinite;animation-delay:calc(var(--i,1)*.4s)}
+.mi-wrap.in .mi-g:nth-child(7n+3){animation:miWin 6.5s ease-in-out infinite 1.8s}
+@keyframes miWin{0%,60%,100%{fill:#c4dfa4}70%,90%{fill:#fff6c8}}
+@media (prefers-reduced-motion:reduce){
+  .mi-wrap [data-pop]{opacity:1;transform:none;transition:none}
+  .mi-hook,.mi-blink,.mi-drone,.mi-rotor,.mi-cloud,.mi-wrap .mi-g{animation:none!important}
+}
+@media(max-width:780px){.split-media.mi-wrap{aspect-ratio:1/1;max-width:520px;margin-inline:auto;width:100%}}
