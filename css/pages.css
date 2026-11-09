@@ -976,9 +976,9 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
    会社概要 PHILOSOPHY：成長するほど、地球がよくなる
    （SVG＝tools/build-company-anim.py／動き＝pages.js 末尾 data-cz）
    ========================================================== */
-.cz-wing,.cz-tree{opacity:0;transform:translateY(-18px) scale(.6);transform-box:fill-box;transform-origin:50% 100%;
+.cz-wing{opacity:0;transform:translateY(-18px) scale(.6);transform-box:fill-box;transform-origin:50% 100%;
   transition:opacity .5s ease,transform .8s cubic-bezier(.34,1.56,.64,1)}
-.cz-wing.on,.cz-tree.on{opacity:1;transform:none}
+.cz-wing.on{opacity:1;transform:none}
 .cz-thalo{opacity:0;transition:opacity .35s ease}
 .lz-st.on .cz-tree.on .cz-thalo{opacity:.9}
 .cz-meter .lz-hp{opacity:0;transition:opacity .35s ease}
@@ -1004,3 +1004,30 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 .lz-wrap.in .cz-count{opacity:1}
 @media(max-width:780px){.split-media.cz-wrap{aspect-ratio:auto}}
 @media (prefers-reduced-motion:reduce){.cz-smog,.cz-meter.on .cz-arrow,.cz-meter.on .lz-hp{animation:none}}
+
+/* 会社概要：木（もこもこの広葉樹）とお花畑 */
+.cz-tree>*{transition:opacity .4s ease}
+.cz-tree:not(.on)>*{opacity:0}
+.cz-trunk{fill:#8a5a2b}.cz-trunk-s{fill:#6e4520}
+.cz-shadow{fill:rgba(42,69,39,.14)}
+.cz-c circle{stroke:none}
+.cz-c1 circle{fill:#2e8b2e}.cz-c2 circle{fill:#45a83a}.cz-c3 circle{fill:#7cc84e}
+.cz-trunk,.cz-trunk-s,.cz-c,.cz-shadow{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);
+  transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
+.cz-c{transform-origin:50% 60%}
+.cz-tree.on .cz-trunk,.cz-tree.on .cz-trunk-s,.cz-tree.on .cz-shadow{transform:none}
+.cz-tree.on .cz-c{transform:none;transition-delay:var(--cd)}
+.cz-grass{fill:#d4ebb4;stroke:#9cc77a;stroke-width:1}
+.cz-stem{stroke:#4f8a36;stroke-width:1.4}
+.cz-leaf{fill:#6aae45}
+.cz-ce{fill:#f2b73a}
+.cz-pt{stroke:rgba(42,69,39,.35);stroke-width:.6}
+.cz-bed .cz-grass{transform-box:fill-box;transform-origin:50% 50%;transform:scale(0);opacity:0;transition:transform .6s ease,opacity .4s ease}
+.cz-bed.on .cz-grass{transform:none;opacity:1}
+.cz-fl{opacity:0;transition:opacity .3s ease}
+.cz-fl>*{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
+.cz-bed.on .cz-fl{opacity:1;transition-delay:calc(.25s + var(--fd))}
+.cz-bed.on .cz-fl>*{transform:none;transition-delay:calc(.25s + var(--fd))}
+.cz-bhalo{opacity:0;transition:opacity .35s ease}
+.lz-st.on .cz-bed.on .cz-bhalo{opacity:.7}
+@media (prefers-reduced-motion:reduce){.cz-trunk,.cz-trunk-s,.cz-c,.cz-shadow,.cz-fl>*,.cz-bed .cz-grass{transition:none}}

@@ -467,7 +467,7 @@
   var truck = svg.querySelector('.lz-truck'), cu = svg.querySelector('.lz-cu');
   var back = svg.querySelector('.lz-back'), front = svg.querySelector('.lz-layer-front'), slot = svg.querySelector('.lz-bedslot');
   var shutter = svg.querySelector('.lz-shutter'), co2 = svg.querySelector('.cz-co2'), num = svg.querySelector('.cz-num'), sun = svg.querySelector('.cz-sun');
-  var wings = [].slice.call(svg.querySelectorAll('.cz-wing')), trees = [].slice.call(svg.querySelectorAll('.cz-tree')), smog = [].slice.call(svg.querySelectorAll('.cz-smog'));
+  var wings = [].slice.call(svg.querySelectorAll('.cz-wing')), trees = [].slice.call(svg.querySelectorAll('.cz-tree, .cz-bed')), smog = [].slice.call(svg.querySelectorAll('.cz-smog'));
   var lbl = {}, sta = {};
   [].forEach.call(svg.querySelectorAll('.lz-lbl'), function (g) { lbl[g.getAttribute('data-lbl')] = g; });
   [].forEach.call(svg.querySelectorAll('.lz-st'), function (g) { var k = g.getAttribute('data-st'); (sta[k] = sta[k] || []).push(g); });
