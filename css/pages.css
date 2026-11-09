@@ -816,3 +816,6 @@ html[data-theme="b"] .rl-step{border-radius:20px}
    ・対応ブラウザでは word-break:auto-phrase も併用 */
 .message .m-body p.mph-wrap{word-break:auto-phrase;max-width:26em}
 .message .m-body .mph{display:inline-block}
+/* All-in-One Cycle のリード文：PCは「回収——」の後で改行、全幅で文節ごとに折り返し */
+.ac .sec-head .lead.ac-lead{max-width:none;word-break:auto-phrase}
+.ac .sec-head .lead.ac-lead .mph{display:inline-block}
