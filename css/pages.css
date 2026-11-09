@@ -1031,3 +1031,5 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 .cz-bhalo{opacity:0;transition:opacity .35s ease}
 .lz-st.on .cz-bed.on .cz-bhalo{opacity:.7}
 @media (prefers-reduced-motion:reduce){.cz-trunk,.cz-trunk-s,.cz-c,.cz-shadow,.cz-fl>*,.cz-bed .cz-grass{transition:none}}
+/* ページ上部：リード文がないページは見出しを全幅に（「SDGsへの取り組み」の「み」だけ折り返す対策） */
+.page-hero .ph-inner>.reveal:only-child{grid-column:1/-1}
