@@ -798,3 +798,6 @@ html[data-theme="b"] .rl-step{border-radius:20px}
   .ac-list li b{font-size:14px}
 }
 @media (prefers-reduced-motion:reduce){.ac *{animation:none !important}}
+
+/* TOP：設備名の流れる帯にメッセージを挿入（2026-11-09「Beyond Reuse」帯は削除） */
+.hero-strip .track span.msg{color:var(--green-deep);font-weight:600;letter-spacing:.14em}
