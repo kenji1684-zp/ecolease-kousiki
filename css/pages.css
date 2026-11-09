@@ -971,3 +971,36 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 .rz-u{transition:opacity .35s ease}
 @media (prefers-reduced-motion:reduce){.rz-wrap.go .rz-lamp,.rz-wrap.go .rz-wind path,.rz-wrap.go .rz-bolt{animation:none}.rz-wrap.go .rz-bolt{opacity:1}}
 @media(max-width:780px){.split-media.rz-wrap{aspect-ratio:651/452}}
+
+/* ==========================================================
+   会社概要 PHILOSOPHY：成長するほど、地球がよくなる
+   （SVG＝tools/build-company-anim.py／動き＝pages.js 末尾 data-cz）
+   ========================================================== */
+.cz-wing,.cz-tree{opacity:0;transform:translateY(-18px) scale(.6);transform-box:fill-box;transform-origin:50% 100%;
+  transition:opacity .5s ease,transform .8s cubic-bezier(.34,1.56,.64,1)}
+.cz-wing.on,.cz-tree.on{opacity:1;transform:none}
+.cz-thalo{opacity:0;transition:opacity .35s ease}
+.lz-st.on .cz-tree.on .cz-thalo{opacity:.9}
+.cz-meter .lz-hp{opacity:0;transition:opacity .35s ease}
+.cz-meter.on .lz-hp{opacity:.9;animation:lzGlow 1.6s ease-in-out .35s infinite alternate}
+.cz-tube{fill:#fff;stroke:#2a4527;stroke-width:1.6}
+.cz-co2{fill:#9e9a8f;transform-box:fill-box;transform-origin:50% 100%;transition:transform 1s cubic-bezier(.4,0,.2,1),fill .6s ease}
+.cz-meter.on .cz-co2{fill:#b7b3a8}
+.cz-mt{font-family:var(--latin,serif);font-size:18px;font-weight:700;fill:#2a4527}
+.cz-arrow{fill:none;stroke:var(--green,#8cc63f);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .3s ease}
+.cz-meter.on .cz-arrow{opacity:1;animation:czDown .9s ease-in-out infinite}
+@keyframes czDown{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+.cz-smog path{fill:#cbc7bd;stroke:#8d897f;stroke-width:1.4}
+.cz-smog text{font-family:var(--latin,serif);font-size:13px;font-weight:700;fill:#7a766c}
+.cz-smog{transition:opacity 1.2s ease}
+.cz-smog{animation:miCloud 12s ease-in-out infinite alternate}
+.cz-sun{opacity:0;transition:opacity 1.2s ease}
+.cz-sun circle{fill:#fff3c4;stroke:#d9a93a;stroke-width:1.6}
+.cz-sun line{stroke:#e2b548;stroke-width:2.4;stroke-linecap:round}
+.cz-ct-l{font-family:var(--serif,serif);font-size:15px;font-weight:700;letter-spacing:.08em;fill:#4b5a45}
+.cz-ct-n{font-family:var(--latin,serif);font-weight:700;fill:var(--green-deep,#46781a)}
+.cz-num{font-size:46px}.cz-unit{font-size:18px;font-family:var(--serif,serif)}
+.cz-count{opacity:0;transition:opacity .6s ease 1s}
+.lz-wrap.in .cz-count{opacity:1}
+@media(max-width:780px){.split-media.cz-wrap{aspect-ratio:auto}}
+@media (prefers-reduced-motion:reduce){.cz-smog,.cz-meter.on .cz-arrow,.cz-meter.on .lz-hp{animation:none}}

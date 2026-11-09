@@ -456,3 +456,95 @@
     });
   }, { threshold: 0.25 }).observe(root);
 })();
+
+/* 会社概要 PHILOSOPHY：設備を回収・再生するたびに会社が成長し（棟が増える・再生台数が増える）、
+   CO₂メーターが下がってもやが晴れ、木が増えていく（3回で1周・16秒）
+   ・札（回収・再生／CO₂削減／緑が増える）が緑になると同時に、倉庫／CO₂メーター／木が光る */
+(function () {
+  var root = document.querySelector('[data-cz]');
+  if (!root) return;
+  var svg = root.querySelector('svg');
+  var truck = svg.querySelector('.lz-truck'), cu = svg.querySelector('.lz-cu');
+  var back = svg.querySelector('.lz-back'), front = svg.querySelector('.lz-layer-front'), slot = svg.querySelector('.lz-bedslot');
+  var shutter = svg.querySelector('.lz-shutter'), co2 = svg.querySelector('.cz-co2'), num = svg.querySelector('.cz-num'), sun = svg.querySelector('.cz-sun');
+  var wings = [].slice.call(svg.querySelectorAll('.cz-wing')), trees = [].slice.call(svg.querySelectorAll('.cz-tree')), smog = [].slice.call(svg.querySelectorAll('.cz-smog'));
+  var lbl = {}, sta = {};
+  [].forEach.call(svg.querySelectorAll('.lz-lbl'), function (g) { lbl[g.getAttribute('data-lbl')] = g; });
+  [].forEach.call(svg.querySelectorAll('.lz-st'), function (g) { var k = g.getAttribute('data-st'); (sta[k] = sta[k] || []).push(g); });
+  function stage(k, on) { lbl[k].classList.toggle('on', on); (sta[k] || []).forEach(function (g) { g.classList.toggle('on', on); }); }
+  var C = 0.8660254, S = 0.5;
+  function P(x, y, z) { return [(x - y) * C, (x + y) * S - (z || 0)]; }
+  function tr(el, x, y, z) { var p = P(x, y, z); el.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')'); }
+  function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+  function seg(t, a, b) { return Math.max(0, Math.min(1, (t - a) / (b - a))); }
+  function lerp(a, b, k) { return a + (b - a) * k; }
+  var TY = 166, BED = [8, TY + 6, 14], DOOR = 238, IN = [DOOR, 84, 0], STOP = DOOR - 8, CYC = 4400, N = 3, LAP = 16000;
+  function setShutter(open) {
+    var z0 = 44 * open, pts = [[230, 120, z0], [272, 120, z0], [272, 120, 44], [230, 120, 44]];
+    shutter.setAttribute('points', pts.map(function (q) { var p = P(q[0], q[1], q[2]); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
+  }
+  function render(t) {
+    var k = Math.min(N - 1, Math.floor(t / CYC)), tc = t - k * CYC, active = t < N * CYC;
+    // 成長の進み具合（再生した台数）
+    var count = 0; for (var i = 0; i < N; i++) if (t >= i * CYC + 2600) count++;
+    if (t >= 15000) count = 0;                                   // 1周の終わりで最初の状態に戻す
+    var grown = 0; for (var j = 0; j < N; j++) if (t >= j * CYC + 3500 && t < 15000) grown++;
+    wings.forEach(function (w) { w.classList.toggle('on', +w.getAttribute('data-w') < count); });
+    trees.forEach(function (g) { g.classList.toggle('on', +g.getAttribute('data-k') < grown); });
+    num.textContent = count;
+    co2.style.transform = 'scaleY(' + (1 - count * 0.27).toFixed(2) + ')';
+    smog.forEach(function (s, i) { s.style.opacity = Math.max(0, 1 - count * 0.3 - (i % 3) * 0.05 * count).toFixed(2); });
+    sun.style.opacity = (count / N).toFixed(2);
+    // トラックと設備
+    var tx = -12, op = 0;
+    if (active) {
+      if (tc < 1000) { tx = lerp(-12, STOP, ease(seg(tc, 0, 1000))); op = seg(tc, 0, 350); }
+      else if (tc < 2900) { tx = STOP; op = 1; }
+      else { var q = seg(tc, 2900, 3900); tx = lerp(STOP, 548, q * q); op = 1 - seg(tc, 3550, 3900); }
+    }
+    tr(truck, tx, 0, 0); truck.style.opacity = op;
+    var c = null, inside = false, dirty = true, ok = false;
+    function arc(A, B, kk) { kk = ease(kk); return [lerp(A[0], B[0], kk), lerp(A[1], B[1], kk), lerp(A[2], B[2], kk) + Math.sin(kk * Math.PI) * 22]; }
+    var bedAbs = [tx + BED[0], BED[1], BED[2]];
+    if (!active || tc < 1000) c = null;
+    else if (tc < 1600) { c = arc(bedAbs, IN, seg(tc, 1000, 1600)); inside = c[1] < 124; }
+    else if (tc < 2300) { c = IN; inside = true; }
+    else if (tc < 2900) { c = arc(IN, bedAbs, seg(tc, 2300, 2900)); inside = c[1] < 124; }
+    if (active && tc >= 2000) { dirty = false; ok = tc >= 2300; }
+    var want = c ? (inside ? back : front) : slot;
+    if (cu.parentNode !== want) want.appendChild(cu);
+    if (c) tr(cu, c[0], c[1], c[2]); else tr(cu, BED[0], BED[1], BED[2]);
+    cu.classList.toggle('dirty', dirty); cu.classList.toggle('ok', ok);
+    var sh = 0;
+    if (active) {
+      if (tc >= 800 && tc < 1000) sh = seg(tc, 800, 1000); else if (tc >= 1000 && tc < 1600) sh = 1;
+      else if (tc >= 1600 && tc < 1800) sh = 1 - seg(tc, 1600, 1800);
+      else if (tc >= 2100 && tc < 2300) sh = seg(tc, 2100, 2300); else if (tc >= 2300 && tc < 2900) sh = 1;
+      else if (tc >= 2900 && tc < 3100) sh = 1 - seg(tc, 2900, 3100);
+    }
+    setShutter(sh);
+    root.classList.toggle('wash', active && tc >= 1700 && tc < 2300);
+    stage('a', active && tc >= 800 && tc < 2600);
+    stage('b', active && tc >= 2600 && tc < 3500);
+    stage('c', active && tc >= 3500 && tc < 4400);
+  }
+  setShutter(0); render(0);
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { root.classList.add('in', 'run'); render(14000); return; }
+  var visible = false, raf = null, t0 = 0, elapsed = 0, started = false;
+  function loop(now) {
+    if (!visible) { raf = null; return; }
+    if (!t0) t0 = now - elapsed;
+    elapsed = now - t0; render(elapsed % LAP);
+    raf = requestAnimationFrame(loop);
+  }
+  function start() { if (raf) return; t0 = 0; raf = requestAnimationFrame(loop); }
+  if (!('IntersectionObserver' in window)) { root.classList.add('in', 'run'); visible = true; start(); return; }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      visible = e.isIntersecting;
+      if (visible && !started) { started = true; root.classList.add('in'); setTimeout(function () { root.classList.add('run'); start(); }, 1200); }
+      else if (visible && started && root.classList.contains('run')) start();
+    });
+  }, { threshold: 0.25 }).observe(root);
+})();
