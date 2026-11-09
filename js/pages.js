@@ -214,7 +214,8 @@
       lbls.forEach(function (s, k) { s.classList.toggle('on', k === i); });
       lis.forEach(function (s, k) { s.classList.toggle('on', k === i); });
       dn.textContent = ('0' + (i + 1)).slice(-2) + ' — ' + data[i].en.toUpperCase();
-      dt.textContent = data[i].t; dp.textContent = data[i].p;
+      dt.textContent = data[i].t;
+      if (data[i].pw) { dp.innerHTML = data[i].pw; } else { dp.textContent = data[i].p; }   // pw = 文節改行（<wbr>）入り。tools/budoux-wbr.py が生成
       det.classList.remove('swap'); void det.offsetWidth; det.classList.add('swap');
     }
     function place(frac) {   // frac: 0〜1（0 = 真上の01）

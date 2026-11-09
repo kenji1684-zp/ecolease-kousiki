@@ -823,3 +823,14 @@ html[data-theme="b"] .rl-step{border-radius:20px}
 #equip .lead.eq-lead{max-width:none;word-break:auto-phrase}
 #equip .lead.eq-lead .mph{display:inline-block}
 @media(max-width:640px){#equip .lead.eq-lead .pc-br{display:none}}
+
+/* ==========================================================
+   文節改行（BudouX）— tools/budoux-wbr.py が <wbr> と .bx を付与
+   文節の途中では折り返さず、「す。」など1〜2文字だけが次の行に落ちるのを防ぐ
+   ========================================================== */
+.bx{word-break:keep-all;overflow-wrap:anywhere}
+/* 見出し・お知らせの題名は行の長さをそろえ、本文は最終行が短くなりすぎないようにする（対応ブラウザのみ・非対応でも表示は崩れない） */
+h2.bx,h3.bx,h4.bx,dt.bx,.news-item.bx,.os-list li.bx{text-wrap:balance}
+p.bx,li.bx,dd.bx{text-wrap:pretty}
+/* お知らせ詳細：スマホで記事が画面幅をはみ出していた不具合の修正（グリッドの最小幅を解除） */
+.art-wrap>*{min-width:0}
