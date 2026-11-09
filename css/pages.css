@@ -878,3 +878,52 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
   .mi-hook,.mi-blink,.mi-drone,.mi-rotor,.mi-cloud,.mi-wrap .mi-g{animation:none!important}
 }
 @media(max-width:780px){.split-media.mi-wrap{aspect-ratio:1/1;max-width:520px;margin-inline:auto;width:100%}}
+
+/* ==========================================================
+   リース ABOUT：現場 → 倉庫（洗浄・点検）→ 次の現場 のリレー
+   （メンテナンスABOUTと同じ線画・配色。SVG＝lease.html／動き＝pages.js 末尾）
+   ========================================================== */
+.lz-wrap svg{overflow:visible}
+.lz-road{fill:#e4ebdc}
+.lz-dash{fill:#fff}
+.lz-dark{fill:#3a4a36}
+.lz-shutter{fill:#e9efe2}
+.lz-glass{fill:#dff0f7}
+.lz-wheel{fill:#2a4527}
+.lz-strip{fill:transparent}
+/* キュービクル：くすんだ灰色 → 洗浄後は白と緑 */
+.lz-ct,.lz-cl,.lz-cr,.lz-cd,.lz-strip{transition:fill .5s ease}
+.lz-cu.dirty .lz-ct{fill:#cfcbc0}.lz-cu.dirty .lz-cl{fill:#b5b1a6}.lz-cu.dirty .lz-cr{fill:#a19d92}.lz-cu.dirty .lz-cd{fill:#9a968b}
+.lz-cu:not(.dirty) .lz-ct{fill:#fff}.lz-cu:not(.dirty) .lz-cl{fill:#f4f8ee}.lz-cu:not(.dirty) .lz-cr{fill:#d6e8c2}.lz-cu:not(.dirty) .lz-cd{fill:#e3efd4}
+.lz-cu:not(.dirty) .lz-strip{fill:var(--green,#8cc63f)}
+.lz-cu{transition:opacity .45s ease}
+.lz-ok{opacity:0;transform-box:fill-box;transform-origin:50% 50%;transition:opacity .3s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.lz-ok circle{fill:var(--green,#8cc63f);stroke:#fff;stroke-width:2}
+.lz-ok path{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.lz-cu.ok .lz-ok{opacity:1}
+/* 倉庫の洗浄：泡が上がる */
+.lz-bub{fill:#fff;stroke:#7fb4d0;stroke-width:1.4;opacity:0}
+.lz-wrap.wash .lz-bub{animation:lzBub 1.3s ease-out infinite;animation-delay:var(--d)}
+@keyframes lzBub{0%{opacity:0;transform:translateY(8px) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateY(-46px) scale(1.15)}}
+/* 再リース先：窓が灯る・きらめき */
+.lz-win{transition:fill .4s ease}
+.lz-wrap.lit .lz-win{fill:#fff6c8}
+.lz-spark{fill:var(--green,#8cc63f);opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+.lz-wrap.lit .lz-spark{animation:lzSpark 1.4s ease-out 1 both;animation-delay:var(--d)}
+@keyframes lzSpark{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.1) rotate(45deg)}100%{opacity:0;transform:scale(.6) rotate(90deg)}}
+.lz-flag{transform-box:fill-box;transform-origin:0 50%;animation:lzFlag 1.8s ease-in-out infinite alternate}
+@keyframes lzFlag{from{transform:skewY(-6deg) scaleX(.92)}to{transform:skewY(5deg) scaleX(1)}}
+/* 工程ラベル：いま行っている工程が緑になる */
+.lz-lbl rect{fill:#fff;stroke:#2a4527;stroke-width:1.4;transition:fill .35s ease}
+.lz-lbl text{font-family:var(--serif,serif);font-size:14px;font-weight:700;letter-spacing:.08em;fill:#2a4527;transition:fill .35s ease}
+.lz-lbl.on rect{fill:var(--green,#8cc63f);stroke:var(--green,#8cc63f)}
+.lz-lbl.on text{fill:#fff}
+.lz-lbl{opacity:0;transition:opacity .6s ease 1.4s}
+.lz-wrap.in .lz-lbl{opacity:1}
+.lz-truck,.lz-layer-front{opacity:0}
+.lz-wrap.run .lz-truck,.lz-wrap.run .lz-layer-front{opacity:1}
+@media (prefers-reduced-motion:reduce){.lz-bub,.lz-spark,.lz-flag{animation:none!important}.lz-lbl{transition:none}}
+@media(max-width:780px){
+  .split-media.lz-wrap{aspect-ratio:673/516;max-width:none}
+  .lz-lbl-in{transform:scale(1.55)}
+}

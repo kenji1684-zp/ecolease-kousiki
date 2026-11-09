@@ -272,3 +272,101 @@
   }, { threshold: 0.3 });
   els.forEach(function (e) { io.observe(e); });
 })();
+
+/* リース ABOUT：トラックが設備を回収 → 倉庫で洗浄・点検 → 次の現場へ再リース（16秒で1周）
+   ・画面外では止める。「視差効果を減らす」設定では、再リース完了の場面で止めて表示する */
+(function () {
+  var root = document.querySelector('[data-lz]');
+  if (!root) return;
+  var svg = root.querySelector('svg');
+  var truck = svg.querySelector('.lz-truck'), cu = svg.querySelector('.lz-cu');
+  var back = svg.querySelector('.lz-back'), front = svg.querySelector('.lz-layer-front');
+  var shutter = svg.querySelector('.lz-shutter');
+  var lbl = {}; [].forEach.call(svg.querySelectorAll('.lz-lbl'), function (g) { lbl[g.getAttribute('data-lbl')] = g; });
+  var C = 0.8660254, S = 0.5;
+  function P(x, y, z) { return [(x - y) * C, (x + y) * S - (z || 0)]; }
+  function tr(el, x, y, z) { var p = P(x, y, z); el.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')'); }
+  function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+  function seg(t, a, b) { return Math.max(0, Math.min(1, (t - a) / (b - a))); }
+  function lerp(a, b, k) { return a + (b - a) * k; }
+  // 位置（アイソメ座標）
+  var TY = 124, BED = { dx: 8, dy: TY + 6, z: 14 };
+  var PAD_L = [112, 78, 2], PAD_R = [398, 78, 2], DOOR_X = 257, IN = [DOOR_X, 52, 0];
+  var STOP_L = PAD_L[0] - BED.dx, STOP_W = DOOR_X - BED.dx, STOP_R = PAD_R[0] - BED.dx;
+  var LAP = 16000;
+  function setShutter(open) {          // open: 0（閉）〜1（開）
+    var z0 = 44 * open, pts = [[250, 100, z0], [290, 100, z0], [290, 100, 44], [250, 100, 44]];
+    shutter.setAttribute('points', pts.map(function (q) { var p = P(q[0], q[1], q[2]); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '));
+  }
+  var slot = svg.querySelector('.lz-bedslot');
+  function layer(mode) {              // back＝倉庫の中／truck＝荷台（運転席より奥）／front＝手前
+    var want = mode === 'back' ? back : mode === 'truck' ? slot : front;
+    if (cu.parentNode !== want) want.appendChild(cu);
+  }
+  function flag(cls, on) { root.classList.toggle(cls, !!on); }
+  function render(t) {
+    // トラックの位置
+    var tx, op = 1;
+    if (t < 1800) { var k = ease(seg(t, 0, 1800)); tx = lerp(-12, STOP_L, k); op = seg(t, 0, 450); }
+    else if (t < 2900) tx = STOP_L;
+    else if (t < 4700) tx = lerp(STOP_L, STOP_W, ease(seg(t, 2900, 4700)));
+    else if (t < 9300) tx = STOP_W;
+    else if (t < 11300) tx = lerp(STOP_W, STOP_R, ease(seg(t, 9300, 11300)));
+    else if (t < 12500) tx = STOP_R;
+    else { var k2 = seg(t, 12500, 14600); tx = lerp(STOP_R, 548, k2 * k2); op = 1 - seg(t, 13900, 14600); }
+    tr(truck, tx, 0, 0); truck.style.opacity = op;
+    // 設備の位置
+    var bed = [tx + BED.dx, BED.dy, BED.z], c, inside = false, dirty = true, ok = false, cop = 1;
+    function arc(a, b, k) { k = ease(k); return [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k) + Math.sin(k * Math.PI) * 26]; }
+    if (t < 1800) c = PAD_L;
+    else if (t < 2900) c = arc(PAD_L, bed, seg(t, 1800, 2900));
+    else if (t < 5000) c = bed;
+    else if (t < 5900) { c = arc(bed, IN, seg(t, 5000, 5900)); c[2] = Math.max(0, c[2] - 26 * Math.sin(seg(t, 5000, 5900) * Math.PI)); inside = c[1] < 104; }
+    else if (t < 8300) { c = IN; inside = true; }
+    else if (t < 9200) { var k3 = seg(t, 8300, 9200); c = [DOOR_X, lerp(IN[1], bed[1], ease(k3)), lerp(0, BED.z, ease(k3))]; inside = c[1] < 104; }
+    else if (t < 11300) c = bed;
+    else if (t < 12400) c = arc(bed, PAD_R, seg(t, 11300, 12400));
+    else c = PAD_R;
+    if (t >= 7300) dirty = false;
+    if (t >= 8300) ok = true;
+    if (t >= 14600) { var f = seg(t, 14600, 15100); cop = 1 - f; if (t >= 15100) { c = PAD_L; dirty = true; ok = false; cop = seg(t, 15200, 15800); } }
+    var onBed = c === bed;
+    if (onBed) tr(cu, BED.dx, BED.dy, BED.z); else tr(cu, c[0], c[1], c[2]);
+    layer(inside ? 'back' : onBed ? 'truck' : 'front');
+    cu.classList.toggle('dirty', dirty); cu.classList.toggle('ok', ok && !dirty); cu.style.opacity = cop;
+    // シャッター
+    var sh = 0;
+    if (t >= 4500 && t < 5000) sh = seg(t, 4500, 5000); else if (t >= 5000 && t < 5900) sh = 1;
+    else if (t >= 5900 && t < 6300) sh = 1 - seg(t, 5900, 6300);
+    else if (t >= 7900 && t < 8300) sh = seg(t, 7900, 8300); else if (t >= 8300 && t < 9200) sh = 1;
+    else if (t >= 9200 && t < 9600) sh = 1 - seg(t, 9200, 9600);
+    setShutter(sh);
+    flag('wash', t >= 6300 && t < 7900);
+    flag('lit', t >= 12400 && t < 14800);
+    lbl.a.classList.toggle('on', t >= 1200 && t < 3600);
+    lbl.b.classList.toggle('on', t >= 4600 && t < 9400);
+    lbl.c.classList.toggle('on', t >= 11000 && t < 14800);
+  }
+  setShutter(0); render(0);
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { root.classList.add('in', 'run'); render(13200); root.classList.remove('lit'); [].forEach.call(svg.querySelectorAll('.lz-win'), function (w) { w.style.fill = '#fff6c8'; }); return; }
+  var visible = false, raf = null, t0 = 0, elapsed = 0, started = false;
+  function loop(now) {
+    if (!visible) { raf = null; return; }
+    if (!t0) t0 = now - elapsed;
+    elapsed = now - t0;
+    render(elapsed % LAP);
+    raf = requestAnimationFrame(loop);
+  }
+  function start() { if (raf) return; t0 = 0; raf = requestAnimationFrame(loop); }
+  if (!('IntersectionObserver' in window)) { root.classList.add('in', 'run'); visible = true; start(); return; }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      visible = e.isIntersecting;
+      if (visible && !started) {          // 初回：建物が立ち上がってからトラックが走り出す
+        started = true; root.classList.add('in');
+        setTimeout(function () { root.classList.add('run'); start(); }, 1700);
+      } else if (visible && started && root.classList.contains('run')) start();
+    });
+  }, { threshold: 0.25 }).observe(root);
+})();
