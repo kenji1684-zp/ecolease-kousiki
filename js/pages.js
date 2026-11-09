@@ -283,6 +283,8 @@
   var back = svg.querySelector('.lz-back'), front = svg.querySelector('.lz-layer-front');
   var shutter = svg.querySelector('.lz-shutter');
   var lbl = {}; [].forEach.call(svg.querySelectorAll('.lz-lbl'), function (g) { lbl[g.getAttribute('data-lbl')] = g; });
+  var sta = {}; [].forEach.call(svg.querySelectorAll('.lz-st'), function (g) { sta[g.getAttribute('data-st')] = g; });
+  function stage(k, on) { lbl[k].classList.toggle('on', on); if (sta[k]) sta[k].classList.toggle('on', on); }
   var C = 0.8660254, S = 0.5;
   function P(x, y, z) { return [(x - y) * C, (x + y) * S - (z || 0)]; }
   function tr(el, x, y, z) { var p = P(x, y, z); el.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')'); }
@@ -343,13 +345,14 @@
     setShutter(sh);
     flag('wash', t >= 6300 && t < 7900);
     flag('lit', t >= 12400 && t < 14800);
-    lbl.a.classList.toggle('on', t >= 1200 && t < 3600);
-    lbl.b.classList.toggle('on', t >= 4600 && t < 9400);
-    lbl.c.classList.toggle('on', t >= 11000 && t < 14800);
+    // 工程の札と建物を同時に光らせる（a＝回収／b＝洗浄・点検／c＝再リース）
+    stage('a', t >= 1200 && t < 3600);
+    stage('b', t >= 4600 && t < 9400);
+    stage('c', t >= 11000 && t < 14800);
   }
   setShutter(0); render(0);
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { root.classList.add('in', 'run'); render(13200); root.classList.remove('lit'); [].forEach.call(svg.querySelectorAll('.lz-win'), function (w) { w.style.fill = '#fff6c8'; }); return; }
+  if (reduce) { root.classList.add('in', 'run'); render(13200); root.classList.remove('lit'); return; }
   var visible = false, raf = null, t0 = 0, elapsed = 0, started = false;
   function loop(now) {
     if (!visible) { raf = null; return; }

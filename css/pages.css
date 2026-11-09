@@ -906,8 +906,17 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 .lz-wrap.wash .lz-bub{animation:lzBub 1.3s ease-out infinite;animation-delay:var(--d)}
 @keyframes lzBub{0%{opacity:0;transform:translateY(8px) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateY(-46px) scale(1.15)}}
 /* 再リース先：窓が灯る・きらめき */
-.lz-win{transition:fill .4s ease}
-.lz-wrap.lit .lz-win{fill:#fff6c8}
+/* 工程の建物：札が緑になると同時に光る（PC・タブレット・スマホ共通） */
+.lz-hp{fill:var(--green,#8cc63f);stroke:var(--green,#8cc63f);stroke-width:10;stroke-linejoin:round}
+.lz-halo{opacity:0;transition:opacity .35s ease}
+.lz-st.on .lz-halo{opacity:.9;animation:lzGlow 1.6s ease-in-out .35s infinite alternate}
+@keyframes lzGlow{from{opacity:.9}to{opacity:.5}}
+.lz-st .mi-t,.lz-st .mi-l,.lz-st .mi-r,.lz-st .mi-ground,.lz-win{transition:fill .35s ease}
+.lz-st.on .mi-t{fill:#fbfff3}
+.lz-st.on .mi-l{fill:#eaf6d8}
+.lz-st.on .mi-r{fill:#cfe9ae}
+.lz-st.on .mi-ground{fill:#e3f2cc}
+.lz-st.on .lz-win{fill:#fff6c8}
 .lz-spark{fill:var(--green,#8cc63f);opacity:0;transform-box:fill-box;transform-origin:50% 50%}
 .lz-wrap.lit .lz-spark{animation:lzSpark 1.4s ease-out 1 both;animation-delay:var(--d)}
 @keyframes lzSpark{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.1) rotate(45deg)}100%{opacity:0;transform:scale(.6) rotate(90deg)}}
@@ -915,15 +924,16 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 @keyframes lzFlag{from{transform:skewY(-6deg) scaleX(.92)}to{transform:skewY(5deg) scaleX(1)}}
 /* 工程ラベル：いま行っている工程が緑になる */
 .lz-lbl rect{fill:#fff;stroke:#2a4527;stroke-width:1.4;transition:fill .35s ease}
-.lz-lbl text{font-family:var(--serif,serif);font-size:14px;font-weight:700;letter-spacing:.08em;fill:#2a4527;transition:fill .35s ease}
+.lz-lbl text{font-family:var(--serif,serif);font-size:20px;font-weight:700;letter-spacing:.08em;fill:#2a4527;transition:fill .35s ease}
 .lz-lbl.on rect{fill:var(--green,#8cc63f);stroke:var(--green,#8cc63f)}
 .lz-lbl.on text{fill:#fff}
 .lz-lbl{opacity:0;transition:opacity .6s ease 1.4s}
 .lz-wrap.in .lz-lbl{opacity:1}
 .lz-truck,.lz-layer-front{opacity:0}
 .lz-wrap.run .lz-truck,.lz-wrap.run .lz-layer-front{opacity:1}
-@media (prefers-reduced-motion:reduce){.lz-bub,.lz-spark,.lz-flag{animation:none!important}.lz-lbl{transition:none}}
+@media (prefers-reduced-motion:reduce){.lz-bub,.lz-spark,.lz-flag,.lz-st.on .lz-halo{animation:none!important}.lz-lbl{transition:none}}
 @media(max-width:780px){
   .split-media.lz-wrap{aspect-ratio:673/516;max-width:none}
-  .lz-lbl-in{transform:scale(1.55)}
 }
+/* リースの図では窓のランダムな点灯を止め、工程に合わせた点灯だけにする */
+.lz-wrap.in .mi-g{animation:none!important}
