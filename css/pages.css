@@ -937,3 +937,37 @@ p.bx,li.bx,dd.bx{text-wrap:pretty}
 }
 /* リースの図では窓のランダムな点灯を止め、工程に合わせた点灯だけにする */
 .lz-wrap.in .mi-g{animation:none!important}
+
+/* ==========================================================
+   レンタル ABOUT：仮設現場の「設置 → 使用期間 → 撤去」
+   （リースと共通の .lz-*／.mi-* を利用。SVG＝tools/build-rental-anim.py／動き＝pages.js 末尾）
+   ========================================================== */
+.rz-plate{fill:#f8fbf2}
+.lz-st.on .rz-plate{fill:#e3f2cc}
+.rz-plate{transition:fill .35s ease}
+.rz-mark{fill:none;stroke:#7a9a6c;stroke-width:1.2;stroke-dasharray:4 4}
+.rz-grill{fill:#9fb59a}
+.rz-fin{fill:#cfe0bd}
+.rz-red-t{fill:#f5b3a2}.rz-red-l{fill:#e8705a}.rz-red-r{fill:#c95540}
+.rz-lamp{fill:#b8b3a8;stroke:#2a4527;stroke-width:1;transition:fill .3s ease}
+.rz-wind path{fill:none;stroke:#6aa9cc;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:7 7;opacity:0;transition:opacity .3s ease}
+.rz-bolt{fill:#f2c230;stroke:#2a4527;stroke-width:1;opacity:0}
+.rz-wrap.go .rz-lamp{fill:var(--green,#8cc63f);animation:rzLamp 1s steps(1) infinite}
+.rz-wrap.go .rz-wind path{opacity:1;animation:rzWind .9s linear infinite}
+.rz-wrap.go .rz-bolt{animation:rzBolt 1.2s ease-in-out infinite}
+@keyframes rzLamp{50%{fill:#d9f0b8}}
+@keyframes rzWind{to{stroke-dashoffset:-28}}
+@keyframes rzBolt{0%,100%{opacity:0}30%,60%{opacity:1}}
+/* 時計と期間バー */
+.rz-face{fill:#fff;stroke:#2a4527;stroke-width:2}
+.rz-tick{stroke:#2a4527;stroke-width:1.6}
+.rz-hand{stroke:#2a4527;stroke-width:3;stroke-linecap:round}
+.rz-mh{stroke:var(--green-deep,#46781a);stroke-width:2.4}
+.rz-pin{fill:#2a4527}
+.rz-bar{fill:#e4ebdc;stroke:#2a4527;stroke-width:1.4}
+.rz-fill{fill:var(--green,#8cc63f);transform-box:fill-box;transform-origin:0 50%}
+.rz-clock{opacity:0;transition:opacity .6s ease 1.2s}
+.rz-wrap.in .rz-clock{opacity:1}
+.rz-u{transition:opacity .35s ease}
+@media (prefers-reduced-motion:reduce){.rz-wrap.go .rz-lamp,.rz-wrap.go .rz-wind path,.rz-wrap.go .rz-bolt{animation:none}.rz-wrap.go .rz-bolt{opacity:1}}
+@media(max-width:780px){.split-media.rz-wrap{aspect-ratio:651/452}}

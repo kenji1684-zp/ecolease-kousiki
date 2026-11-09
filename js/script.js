@@ -277,7 +277,7 @@
       if (loading) return loading;
       loading = new Promise(function (res) {
         if (window.ECO_GUIDE_INDEX) { prep(); return res(IDX); }
-        var s = document.createElement('script'); s.src = 'js/guide-index.js?v=2026110910';
+        var s = document.createElement('script'); s.src = 'js/guide-index.js?v=2026110911';
         s.onload = function () { prep(); res(IDX); }; s.onerror = function () { res(null); };
         document.head.appendChild(s);
       });
