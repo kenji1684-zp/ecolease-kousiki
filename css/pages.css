@@ -810,3 +810,9 @@ html[data-theme="b"] .rl-step{border-radius:20px}
   background:radial-gradient(circle at 50% 50%,rgba(22,26,20,.7) 0%,rgba(22,26,20,.58) 36%,rgba(22,26,20,.3) 58%,rgba(22,26,20,0) 72%)}
 .hero .v4-circle .ring{filter:drop-shadow(0 1px 3px rgba(0,0,0,.55))}
 .hero .v4-circle .ring text{font-weight:600}
+
+/* TOPメッセージ本文（2026-11-09）：文節ごとに折り返し、「す。」などが1字だけ次の行に落ちないように
+   ・.mph（文節）は途中で改行しない → どの画面幅でも行末が文節の切れ目になる
+   ・対応ブラウザでは word-break:auto-phrase も併用 */
+.message .m-body p.mph-wrap{word-break:auto-phrase;max-width:26em}
+.message .m-body .mph{display:inline-block}
