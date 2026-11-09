@@ -801,3 +801,12 @@ html[data-theme="b"] .rl-step{border-radius:20px}
 
 /* TOP：設備名の流れる帯にメッセージを挿入（2026-11-09「Beyond Reuse」帯は削除） */
 .hero-strip .track span.msg{color:var(--green-deep);font-weight:600;letter-spacing:.14em}
+
+/* TOP：右側の再生ボタン（会社紹介ムービー）を見やすく（2026-11-09）
+   ・ボタンの背後に黒いもや（ふんわり消える円）
+   ・円周の文字を白に */
+.hero .v4-circle{color:#fff;isolation:isolate}
+.hero .v4-circle::before{content:"";position:absolute;inset:-48%;z-index:-1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(22,26,20,.7) 0%,rgba(22,26,20,.58) 36%,rgba(22,26,20,.3) 58%,rgba(22,26,20,0) 72%)}
+.hero .v4-circle .ring{filter:drop-shadow(0 1px 3px rgba(0,0,0,.55))}
+.hero .v4-circle .ring text{font-weight:600}
