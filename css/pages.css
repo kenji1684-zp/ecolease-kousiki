@@ -819,3 +819,7 @@ html[data-theme="b"] .rl-step{border-radius:20px}
 /* All-in-One Cycle のリード文：PCは「回収——」の後で改行、全幅で文節ごとに折り返し */
 .ac .sec-head .lead.ac-lead{max-width:none;word-break:auto-phrase}
 .ac .sec-head .lead.ac-lead .mph{display:inline-block}
+/* 取扱設備（Equipment）のリード文：PCは「大型設備まで。」の後で改行、スマホは文節ごとに折り返し */
+#equip .lead.eq-lead{max-width:none;word-break:auto-phrase}
+#equip .lead.eq-lead .mph{display:inline-block}
+@media(max-width:640px){#equip .lead.eq-lead .pc-br{display:none}}
